@@ -23,7 +23,29 @@ import trend_icon from "../../assets/images/icons/svg/trend-up-svgrepo-com.svg";
 import fire_icon from "../../assets/images/icons/svg/fire-svgrepo-com.svg";
 import star_filled_icon from "../../assets/images/icons/svg/star-filled-svgrepo-com.svg";
 
+import {
+  getPopularMovies,
+  getTopRatedMovies,
+  getUpcomingMovies,
+  searchMovieGenres,
+  searchMovies,
+  searchTVGenres,
+} from "../../services/movie-api";
+
+import { useEffect, useState } from "react";
+
 const Home = (props) => {
+  const [popularMovies, setPopularMovies] = useState([]);
+
+  useEffect(() => {
+    getPopularMoviesList();
+  }, []);
+
+  const getPopularMoviesList = async () => {
+    const response = await getPopularMovies();
+    setPopularMovies(response.results);
+  };
+
   return (
     <div className="w-full h-full">
       <div className="relative w-full h-full min-h-screen bg-home-banner bg-cover bg-top bg-no-repeat ">
@@ -196,7 +218,7 @@ const Home = (props) => {
                   2h 11m
                 </span>
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
-                <div className="flex items-center">
+                <div className="flex items-center gap-1">
                   <img className="w-5" src={star_rating} alt="" />
                   <img className="w-5" src={star_rating} alt="" />
                   <img className="w-5" src={star_rating} alt="" />
@@ -274,25 +296,48 @@ const Home = (props) => {
             </nav>
             <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
             <div className="w-full flex items-center justify-start gap-4">
-              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full">
+              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Action
               </button>
-              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full">
+              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
                 Adventure
               </button>
-              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full">
+              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
                 Animation
               </button>
-              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full">
+              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Fiction
               </button>
-              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full">
+              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Heroes
               </button>
-              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full">
+              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
                 Comedy
               </button>
             </div>
+          </div>
+          <div className="w-full flex overflow-scroll items-center">
+            {popularMovies.map((movie) => (
+              <div
+                key={movie.id}
+                className="min-w-64 h-96 bg-zinc-800 rounded-lg overflow-hidden m-4 shadow-lg"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-full h-2/3 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-white">
+                    {movie.title}
+                  </h3>
+                  <p className="text-sm text-gray-400">{movie.release_date}</p>
+                  <p className="text-sm text-gray-400">
+                    {movie.vote_average} / 10
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </main>
       </div>
