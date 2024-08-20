@@ -258,37 +258,37 @@ const Home = (props) => {
               <ul className="flex items-center gap-16">
                 <li>
                   <Link
-                    className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-7" src={trend_icon} alt="" />
+                    <img className="w-5" src={trend_icon} alt="" />
                     Trending
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-7" src={fire_icon} alt="" />
+                    <img className="w-5" src={fire_icon} alt="" />
                     Popular
                   </Link>
                 </li>
                 <li>
                   <Link
                     to={""}
-                    className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                   >
-                    <img className="w-7" src={add_icon} alt="" />
+                    <img className="w-5" src={add_icon} alt="" />
                     Recently added
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-6" src={star_filled_icon} alt="" />
+                    <img className="w-5" src={star_filled_icon} alt="" />
                     Premium
                   </Link>
                 </li>
@@ -338,6 +338,69 @@ const Home = (props) => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="w-full h-40 flex flex-col justify-center items-start gap-4">
+            <nav>
+              <ul className="flex items-center gap-16">
+                <li>
+                  <Link
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    to={""}
+                  >
+                    <img className="w-5" src={trend_icon} alt="" />
+                    Movies
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    to={""}
+                  >
+                    <img className="w-5" src={fire_icon} alt="" />
+                    Series
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={""}
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                  >
+                    <img className="w-5" src={add_icon} alt="" />
+                    TV Shows
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    to={""}
+                  >
+                    <img className="w-5" src={star_filled_icon} alt="" />
+                    Documentaires
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="w-full flex items-center justify-start gap-4">
+              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+                Action
+              </button>
+              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+                Adventure
+              </button>
+              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+                Animation
+              </button>
+              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+                Fiction
+              </button>
+              <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+                Heroes
+              </button>
+              <button className="py-2 text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+                Comedy
+              </button>
+            </div>
           </div>
         </main>
       </div>
