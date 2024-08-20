@@ -22,6 +22,9 @@ import add_icon from "../../assets/images/icons/svg/add-svgrepo-com.svg";
 import trend_icon from "../../assets/images/icons/svg/trend-up-svgrepo-com.svg";
 import fire_icon from "../../assets/images/icons/svg/fire-svgrepo-com.svg";
 import star_filled_icon from "../../assets/images/icons/svg/star-filled-svgrepo-com.svg";
+import star_yellow_icon from "../../assets/images/icons/svg/star-svgrepo-yellow.svg";
+import heart_icon from "../../assets/images/icons/svg/heart-svgrepo-com.svg";
+import view_icon from "../../assets/images/icons/svg/eye-svgrepo-com.svg";
 
 import {
   getPopularMovies,
@@ -36,15 +39,53 @@ import { useEffect, useState } from "react";
 
 const Home = (props) => {
   const [popularMovies, setPopularMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([])
 
   useEffect(() => {
     getPopularMoviesList();
+    geTopRatedMoviesList()
   }, []);
 
   const getPopularMoviesList = async () => {
     const response = await getPopularMovies();
     setPopularMovies(response.results);
   };
+
+  const geTopRatedMoviesList = async () => {
+    const response = await getTopRatedMovies();
+    setTopRatedMovies(response.results);
+  };
+
+  const handleMouseDrag = (e) => {
+    const container = e.currentTarget;
+    const startX = e.pageX - container.offsetLeft;
+    const scrollLeft = container.scrollLeft;
+
+    const onMouseMove = (e) => {
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed
+      container.scrollLeft = scrollLeft - walk;
+    };
+
+    const onMouseUp = () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+  };
+
+  const getOnlyYearDate = (date) => {
+    const [year, month, day] = date.split('-');
+
+    return `${year}`
+  }
+
+  const formatRating = (rating) => {
+    return parseFloat(Number(rating).toFixed(1))
+  }
+
 
   return (
     <div className="w-full h-full">
@@ -118,7 +159,11 @@ const Home = (props) => {
             </div>
           </div>
         </header>
-        <aside className="fixed top-0 left-0 flex  flex-col items-center h-screen w-16 px-4 pt-16 pb-4">
+        <aside
+          style={{
+            background: 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 100%)'
+          }}
+          className="fixed top-0 left-0 flex  flex-col items-center h-screen w-16 px-4 pt-16 pb-4 z-50">
           <nav className="flex flex-col h-full items-center justify-between">
             <ul className="w-full flex flex-col items-center gap-7">
               <li>
@@ -252,16 +297,16 @@ const Home = (props) => {
         </div>
       </div>
       <div className="w-full h-full flex justify-center">
-        <main className="w-full  max laptop:w-5/6 flex flex-col items-center">
-          <div className="w-full h-40 flex flex-col justify-center items-start gap-4">
+        <main className="w-full flex flex-col items-center">
+          <div className="h-40 laptop:w-5/6 flex flex-col justify-center items-start gap-4">
             <nav>
               <ul className="flex items-center gap-16">
                 <li>
                   <Link
-                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={trend_icon} alt="" />
+                    <img className="w-6" src={trend_icon} alt="" />
                     Trending
                   </Link>
                 </li>
@@ -295,7 +340,7 @@ const Home = (props) => {
               </ul>
             </nav>
             <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
-            <div className="w-full flex items-center justify-start gap-4">
+            <div className="laptop:w-5/6 flex items-center justify-start gap-4">
               <button className="py-2 text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Action
               </button>
@@ -316,30 +361,79 @@ const Home = (props) => {
               </button>
             </div>
           </div>
-          <div className="w-full flex overflow-scroll items-center">
+          <div
+            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseDown={handleMouseDrag}
+            style={{ cursor: "grab" }}
+          >
             {popularMovies.map((movie) => (
               <div
                 key={movie.id}
-                className="min-w-64 h-96 bg-zinc-800 rounded-lg overflow-hidden m-4 shadow-lg"
+                className="relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}
-                  className="w-full h-2/3 object-cover"
+                  className="w-44 object-cover mb-1"
                 />
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-white">
+                <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                <div className="">
+                  <h3 className="text-sm truncate font-medium text-white mb-2">
                     {movie.title}
                   </h3>
-                  <p className="text-sm text-gray-400">{movie.release_date}</p>
-                  <p className="text-sm text-gray-400">
-                    {movie.vote_average} / 10
-                  </p>
+                  <div className="flex justify-between items-center">
+                    <p className="text-xs font-medium text-gray-300">{getOnlyYearDate(movie.release_date)}</p>
+                    <div className="flex items-center gap-1 z-40">
+                      <button className="p-1" >   <img className="w-4" src={heart_icon} alt="" /></button>
+                      <button className="p-1" >      <img className="w-4" src={view_icon} alt="" /></button>
+
+                    </div>
+                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                      <img className="w-3" src={star_yellow_icon} alt="..." /> {formatRating(movie.vote_average)}
+                    </span>
+                  </div>
+
                 </div>
               </div>
             ))}
           </div>
-          <div className="w-full h-40 flex flex-col justify-center items-start gap-4">
+          <div
+            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseDown={handleMouseDrag}
+            style={{ cursor: "grab" }}
+          >
+            {topRatedMovies.map((movie) => (
+              <div
+                key={movie.id}
+                className="relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-44 object-cover mb-1"
+                />
+                <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                <div className="">
+                  <h3 className="text-sm truncate font-medium text-white mb-2">
+                    {movie.title}
+                  </h3>
+                  <div className="flex justify-between items-center">
+                    <p className="text-xs font-medium text-gray-300">{getOnlyYearDate(movie.release_date)}</p>
+                    <div className="flex items-center gap-1 z-40">
+                      <button className="p-1" >   <img className="w-4" src={heart_icon} alt="" /></button>
+                      <button className="p-1" >      <img className="w-4" src={view_icon} alt="" /></button>
+
+                    </div>
+                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                      <img className="w-3" src={star_yellow_icon} alt="..." /> {formatRating(movie.vote_average)}
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="laptop:w-5/6 h-40 flex flex-col justify-center items-start gap-4">
             <nav>
               <ul className="flex items-center gap-16">
                 <li>
@@ -353,10 +447,10 @@ const Home = (props) => {
                 </li>
                 <li>
                   <Link
-                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
+                    className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={fire_icon} alt="" />
+                    <img className="w-6" src={fire_icon} alt="" />
                     Series
                   </Link>
                 </li>
@@ -402,9 +496,45 @@ const Home = (props) => {
               </button>
             </div>
           </div>
+          <div
+            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseDown={handleMouseDrag}
+            style={{ cursor: "grab" }}
+          >
+            {popularMovies.map((movie) => (
+              <div
+                key={movie.id}
+                className="relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-44 object-cover mb-1"
+                />
+                <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                <div className="">
+                  <h3 className="text-sm truncate font-medium text-white mb-2">
+                    {movie.title}
+                  </h3>
+                  <div className="flex justify-between items-center">
+                    <p className="text-xs font-medium text-gray-300">{getOnlyYearDate(movie.release_date)}</p>
+                    <div className="flex items-center gap-1 z-40">
+                      <button className="p-1" >   <img className="w-4" src={heart_icon} alt="" /></button>
+                      <button className="p-1" >      <img className="w-4" src={view_icon} alt="" /></button>
+
+                    </div>
+                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                      <img className="w-3" src={star_yellow_icon} alt="..." /> {formatRating(movie.vote_average)}
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
         </main>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 
