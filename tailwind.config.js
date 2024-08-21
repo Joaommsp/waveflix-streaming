@@ -8,6 +8,8 @@ export default {
         "signin-banner": "url('./src/assets/images/signin-banner-square.png')",
         "login-banner": "url('./src/assets/images/login-banner-square.png')",
         "home-banner": "url('./src/assets/images/home-screen-banner.png')",
+        "hod-poster": "url('./src/assets/images/hod-poster.png')",
+        "tb-poster": "url('./src/assets/images/tb-poster.png')",
       },
       screens: {
         tablet: "640px",
