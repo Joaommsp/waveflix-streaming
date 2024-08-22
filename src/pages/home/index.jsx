@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import logo_full_light from "../../assets/images/logo-full-white.png";
@@ -180,6 +181,12 @@ const Home = (props) => {
 
   const formatRating = (rating) => {
     return parseFloat(Number(rating).toFixed(1));
+  };
+
+  const navigate = useNavigate();
+
+  const handleMovieData = (movieID) => {
+    navigate("/movie-details", { state: { id: movieID } });
   };
 
   return (
@@ -464,41 +471,44 @@ const Home = (props) => {
             style={{ cursor: "grab" }}
           >
             {popularMovies.map((movie) => (
-              <div
+              <Link
                 key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                to="/movie-details"
+                state={{ movieID: movie.id }}
               >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.release_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+                <div className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.release_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div

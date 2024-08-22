@@ -14,6 +14,7 @@ const getPopularMovies = async (page) => {
       options
     );
     const data = await response.json();
+    console.log("filmes aqui", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -267,6 +268,54 @@ const getArtists = async (page) => {
   }
 };
 
+const getMovieDetailByID = async (movieID) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlN2M2MjIxMWNiMjJlZTY1Yjc0MDhlZmI0NTkzMGQyYyIsInN1YiI6IjY1ZjJlYTM5ZDY0YWMyMDE2NDVmODQzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oxMTZqm-hRT2yKvMNoW9SkTLVQ7NJog4-izAjXAq_M4",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieID}`,
+      options
+    );
+    const data = await response.json();
+    console.log("detalhes do filmes aqui", data);
+    return data;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};
+
+const getMovieCreditsByID = async (movieID) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlN2M2MjIxMWNiMjJlZTY1Yjc0MDhlZmI0NTkzMGQyYyIsInN1YiI6IjY1ZjJlYTM5ZDY0YWMyMDE2NDVmODQzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oxMTZqm-hRT2yKvMNoW9SkTLVQ7NJog4-izAjXAq_M4",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieID}/credits?`,
+      options
+    );
+    const data = await response.json();
+    console.log("creditos do filme aqui", data);
+    return data;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};
+
 export {
   getPopularMovies,
   getUpcomingMovies,
@@ -280,4 +329,6 @@ export {
   getTopRatedSeries_heroes,
   getTopRatedSeries_heroes_dc,
   getArtists,
+  getMovieDetailByID,
+  getMovieCreditsByID,
 };
