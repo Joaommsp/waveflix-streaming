@@ -124,7 +124,7 @@ const MovieDetails = (props) => {
 
     const onMouseMove = (e) => {
       const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 2; // Scroll speed
+      const walk = (x - startX) * 2;
       container.scrollLeft = scrollLeft - walk;
     };
 

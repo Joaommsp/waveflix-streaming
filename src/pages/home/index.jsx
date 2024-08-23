@@ -37,6 +37,8 @@ import send_icon from "../../assets/images/icons/svg/send-svgrepo-com.svg";
 import linkedin_icon from "../../assets/images/icons/svg/linkedin-161-svgrepo-com.svg";
 import github_icon from "../../assets/images/icons/svg/github-142-svgrepo-com.svg";
 import behance_icon from "../../assets/images/icons/svg/behance-svgrepo-com.svg";
+import arrow_prev_icon from "../../assets/images/icons/svg/arrow-prev-svgrepo-com.svg";
+import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-com.svg";
 
 import {
   getPopularMovies,
@@ -53,7 +55,7 @@ import {
   getArtists,
 } from "../../services/movie-api";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Home = (props) => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -71,6 +73,12 @@ const Home = (props) => {
     useState([]);
   const [popularArtists, setPopularArtists] = useState([]);
   const [popularArtistsPageTwo, setPopularArtistsPageTwo] = useState([]);
+
+  const [showButtons, setShowButtons] = useState(false);
+  const [showButtons_2, setShowButtons_2] = useState(false);
+
+  const carrouselRef = useRef(null);
+  const carrouselRef_2 = useRef(null);
 
   useEffect(() => {
     getPopularMoviesList();
@@ -153,30 +161,38 @@ const Home = (props) => {
     setPopularArtistsPageTwo(response.results);
   };
 
-  const handleMouseDrag = (e) => {
-    const container = e.currentTarget;
-    const startX = e.pageX - container.offsetLeft;
-    const scrollLeft = container.scrollLeft;
-
-    const onMouseMove = (e) => {
-      const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 2; // Scroll speed
-      container.scrollLeft = scrollLeft - walk;
-    };
-
-    const onMouseUp = () => {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
-    };
-
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  };
-
   const getOnlyYearDate = (date) => {
     const [year, month, day] = date.split("-");
 
     return `${year}`;
+  };
+
+  const scrollLeft = () => {
+    carrouselRef.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    carrouselRef.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollLeft_2 = () => {
+    carrouselRef_2.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_2 = () => {
+    carrouselRef_2.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
   };
 
   const formatRating = (rating) => {
@@ -466,17 +482,121 @@ const Home = (props) => {
             </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons(true)}
+            onMouseLeave={() => setShowButtons(false)}
           >
-            {popularMovies.map((movie) => (
-              <Link
-                key={movie.id}
-                to="/movie-details"
-                state={{ movieID: movie.id }}
-              >
-                <div className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg">
+            {showButtons && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollLeft()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {popularMovies.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <Link
+                    key={movie.id}
+                    to="/movie-details"
+                    state={{ movieID: movie.id }}
+                  >
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.release_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_2(true)}
+            onMouseLeave={() => SetShowButtons_2(false)}
+          >
+            <div
+              ref={carrouselRef_2}
+              className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ cursor: "grab" }}
+            >
+              {showButtons_2 && (
+                <>
+                  <div className="absolute z-50">
+                    <button
+                      className="text-white"
+                      onClick={() => scrollLeft_2()}
+                    >
+                      esquerda
+                    </button>
+                  </div>
+                  <div
+                    className="absolute z-50 right-0"
+                    onClick={() => scrollRight_2()}
+                  >
+                    <button className="text-white">Direita</button>
+                  </div>
+                </>
+              )}
+              {topRatedMovies.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
@@ -508,51 +628,8 @@ const Home = (props) => {
                     </div>
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
-          <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
-            style={{ cursor: "grab" }}
-          >
-            {topRatedMovies.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.release_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
-                    </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="laptop:w-5/6 h-40 flex flex-col justify-center items-start gap-4">
             <nav>
@@ -619,7 +696,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries.map((movie) => (
@@ -725,7 +801,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeriesPageTwo.map((movie) => (
@@ -768,7 +843,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeriesPageThree.map((movie) => (
@@ -874,7 +948,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries_2024.map((movie) => (
@@ -917,7 +990,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries_2014.map((movie) => (
@@ -1023,7 +1095,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries_heroes.map((movie) => (
@@ -1066,7 +1137,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries_heroesPageTwo.map((movie) => (
@@ -1170,7 +1240,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries_heroes_dc.map((movie) => (
@@ -1213,7 +1282,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {topRatedSeries_heroes_dcPageTwo.map((movie) => (
@@ -1299,7 +1367,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {popularArtists.map((person) => (
@@ -1339,7 +1406,6 @@ const Home = (props) => {
           </div>
           <div
             className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
             {popularArtistsPageTwo.map((person) => (
