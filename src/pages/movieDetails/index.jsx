@@ -20,6 +20,7 @@ import star_icon from "../../assets/images/icons/svg/star-svgrepo-com.svg";
 import menu_icon from "../../assets/images/icons/svg/menu-svgrepo-com.svg";
 import search_icon from "../../assets/images/icons/svg/search-alt-svgrepo-com.svg";
 import play_icon from "../../assets/images/icons/svg/play-svgrepo-com.svg";
+import play_bluish_icon from "../../assets/images/icons/svg/play-1003-svgrepo-com.svg";
 import play_styled_icon from "../../assets/images/icons/svg/play-styled-svgrepo-com.svg";
 import add_icon from "../../assets/images/icons/svg/add-svgrepo-com.svg";
 import trend_icon from "../../assets/images/icons/svg/trend-up-svgrepo-com.svg";
@@ -49,7 +50,7 @@ import { useEffect, useState } from "react";
 
 const MovieDetails = (props) => {
   const location = useLocation();
-  const { movieID } = location.state;
+  const movieID = location.state ? location.state.movieID : null;
 
   const [topRatedSeries_heroes_dc, setTopRatedSeries_heroes_dc] = useState([]);
   const [topRatedSeries_heroes_dcPageTwo, setTopRatedSeries_heroes_dcPageTwo] =
@@ -60,13 +61,39 @@ const MovieDetails = (props) => {
   const [movieCredits, setMovieCredits] = useState({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    setLocalMovieID();
     geTopRatedSeriesList_heroes_dc(1);
     geTopRatedSeriesList_heroes_dcPageTwo(2);
     getPopularArtists(1);
     getPopularArtistsPageTwo(2);
-    getMovieDetails(movieID);
-    getMovieCredits(movieID);
+    verifyLocalMovieID();
   }, []);
+
+  const setLocalMovieID = () => {
+    console.log("SITUACAO DO MOVIE ID", movieID);
+    return movieID != null
+      ? localStorage.setItem("localMovieID", movieID)
+      : null;
+  };
+
+  const verifyLocalMovieID = () => {
+    const localMovieID = localStorage.getItem("localMovieID");
+
+    if (localMovieID != null) {
+      console.log("ID LOCAL EXISTE E ESTA AQUI O ", localMovieID);
+      getMovieDetails(localMovieID);
+      getMovieCredits(localMovieID);
+    } else {
+      console.log("ID LOCAL N EXISTE e foi criado agora ", movieID);
+      localStorage.setItem("localMovieID", movieID);
+      getMovieDetails(movieID);
+      getMovieCredits(movieID);
+    }
+  };
 
   const getMovieDetails = async (movieID) => {
     const response = await getMovieDetailByID(movieID);
@@ -79,7 +106,7 @@ const MovieDetails = (props) => {
       overview: response.overview,
       popularity: response.popularity,
       poster_path: response.poster_path,
-      release_date: response.release_date,
+      release_date: getOnlyYearDate(response.release_date),
       origin_country: response.origin_country[0],
       genres: response.genres,
       tagline: response.tagline,
@@ -153,9 +180,9 @@ const MovieDetails = (props) => {
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
         }}
-        className="relative w-full h-full min-h-screen bg-cover bg-top bg-no-repeat "
+        className="relative w-full h-full min-h-screen bg-cover bg-bottom bg-no-repeat "
       >
-        <header className="w-full flex py-3 px items-center justify-center ">
+        <header className="absolute z-50 w-full flex py-3 px items-center justify-center ">
           <div className="laptop:w-5/6 flex items-center justify-between">
             <div className="flex items-center gap-16">
               <img src={logo_full_light} className="w-24" alt="" />
@@ -294,9 +321,49 @@ const MovieDetails = (props) => {
           </nav>
         </aside>
 
-        <div>
-          <div>
-            <h2 className="text-5xl text-gray-100">{movieDetails.title}</h2>
+        <div className="absolute w-full h-full bg-cover-content-gradient bg-bottom flex flex-col items-center">
+          <div className="w-full laptop:min-h-96 flex justify-center items-center">
+            <a
+              href="#"
+              className="bg-gray-100 p-5 pl-5 rounded-full hover:scale-110 transition ease-in-out duration-300"
+            >
+              <img
+                className="w-5 ml-0.5 rotate-center transition ease-in-out duration-300"
+                src={play_bluish_icon}
+                alt="..."
+              />
+            </a>
+          </div>
+
+          <div className="h-full laptop:min-h-96 laptop:w-5/6">
+            <div className="w-full flex items-center justify-between">
+              <div className="flex items-center gap-4 w-full flex-wrap justify-start">
+                <h2 className="text-3xl font-light text-gray-100">
+                  {movieDetails.title}
+                </h2>
+                <p className="text-sm font-light text-gray-300">
+                  Tagline: {movieDetails.tagline}
+                </p>
+              </div>
+              <div className="flex w-full h-7 justify-end  items-center gap-3 mb-4">
+                <span className="text-sm text-gray-300 font-medium">
+                  {movieDetails.release_date}
+                </span>
+                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <img src={c_12} alt="..." />
+                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <span className="text-sm text-gray-300 font-medium">
+                  2h 11m
+                </span>
+                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="flex items-center gap-1">
+                  <img className="w-5" src={star_rating} alt="" />
+                  <img className="w-5" src={star_rating} alt="" />
+                  <img className="w-5" src={star_rating} alt="" />
+                  <img className="w-5" src={star_rating} alt="" />
+                </div>
+              </div>
+            </div>
             <p className="text-gray-100">{movieDetails.overview}</p>
             <img
               src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
@@ -318,7 +385,6 @@ const MovieDetails = (props) => {
               Gêneros:{" "}
               {movieDetails.genres?.map((genre) => genre.name).join(", ")}
             </p>
-            <p className="text-gray-100">Tagline: {movieDetails.tagline}</p>
             <p className="text-gray-100">
               Duração: {movieDetails.runtime} minutos
             </p>
@@ -337,7 +403,10 @@ const MovieDetails = (props) => {
                 actor.profile_path ? (
                   <div key={actor.id}>
                     <span>{actor.name}</span>
-                    <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="" />
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                      alt=""
+                    />
                   </div>
                 ) : null
               )

@@ -10,6 +10,7 @@ export default {
         "home-banner": "url('./src/assets/images/home-screen-banner.png')",
         "hod-poster": "url('./src/assets/images/hod-poster.png')",
         "tb-poster": "url('./src/assets/images/tb-poster.png')",
+        "cover-content-gradient": "url('./src/assets/images/cover-content-image.png')",
       },
       screens: {
         tablet: "640px",

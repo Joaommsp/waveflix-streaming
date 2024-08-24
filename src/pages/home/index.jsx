@@ -76,9 +76,31 @@ const Home = (props) => {
 
   const [showButtons, setShowButtons] = useState(false);
   const [showButtons_2, setShowButtons_2] = useState(false);
+  const [showButtons_3, setShowButtons_3] = useState(false);
+  const [showButtons_4, setShowButtons_4] = useState(false);
+  const [showButtons_5, setShowButtons_5] = useState(false);
+  const [showButtons_6, setShowButtons_6] = useState(false);
+  const [showButtons_7, setShowButtons_7] = useState(false);
+  const [showButtons_8, setShowButtons_8] = useState(false);
+  const [showButtons_9, setShowButtons_9] = useState(false);
+  const [showButtons_10, setShowButtons_10] = useState(false);
+  const [showButtons_11, setShowButtons_11] = useState(false);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const carrouselRef = useRef(null);
   const carrouselRef_2 = useRef(null);
+  const carrouselRef_3 = useRef(null);
+  const carrouselRef_4 = useRef(null);
+  const carrouselRef_5 = useRef(null);
+  const carrouselRef_6 = useRef(null);
+  const carrouselRef_7 = useRef(null);
+  const carrouselRef_8 = useRef(null);
+  const carrouselRef_9 = useRef(null);
+  const carrouselRef_10 = useRef(null);
+  const carrouselRef_11 = useRef(null);
 
   useEffect(() => {
     getPopularMoviesList();
@@ -167,7 +189,7 @@ const Home = (props) => {
     return `${year}`;
   };
 
-  const scrollLeft = () => {
+  const scrollContentLeft = () => {
     carrouselRef.current.scrollBy({
       left: -1000,
       behavior: "smooth",
@@ -181,7 +203,7 @@ const Home = (props) => {
     });
   };
 
-  const scrollLeft_2 = () => {
+  const scrollContentLeft_2 = () => {
     carrouselRef_2.current.scrollBy({
       left: -1000,
       behavior: "smooth",
@@ -195,14 +217,158 @@ const Home = (props) => {
     });
   };
 
+  const scrollContentLeft_3 = () => {
+    carrouselRef_3.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_3 = () => {
+    carrouselRef_3.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_4 = () => {
+    carrouselRef_4.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_4 = () => {
+    carrouselRef_4.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_5 = () => {
+    carrouselRef_5.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_5 = () => {
+    carrouselRef_5.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_6 = () => {
+    carrouselRef_6.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_6 = () => {
+    carrouselRef_6.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_7 = () => {
+    carrouselRef_7.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_7 = () => {
+    carrouselRef_7.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_8 = () => {
+    carrouselRef_8.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_8 = () => {
+    carrouselRef_8.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_9 = () => {
+    carrouselRef_9.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_9 = () => {
+    carrouselRef_9.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_10 = () => {
+    carrouselRef_10.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_10 = () => {
+    carrouselRef_10.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollContentLeft_11 = () => {
+    carrouselRef_11.current.scrollBy({
+      left: -1000,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight_11 = () => {
+    carrouselRef_11.current.scrollBy({
+      left: 1000,
+      behavior: "smooth",
+    });
+  };
+
   const formatRating = (rating) => {
     return parseFloat(Number(rating).toFixed(1));
   };
 
   const navigate = useNavigate();
 
-  const handleMovieData = (movieID) => {
-    navigate("/movie-details", { state: { id: movieID } });
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - e.currentTarget.offsetLeft);
+    setScrollLeft(e.currentTarget.scrollLeft);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - e.currentTarget.offsetLeft;
+    const walk = (x - startX) * 3; // Scroll speed multiplier
+    e.currentTarget.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) handleMouseUp();
   };
 
   return (
@@ -399,9 +565,13 @@ const Home = (props) => {
                 netus blandit morbi.
               </p>
               <div className="flex items-center gap-4 mb-16">
-                <button className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
+                <Link
+                  to="/movie-details"
+                  state={{ movieID: 68726 }}
+                  className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
+                >
                   <img className="w-5" src={play_icon} alt="..." /> PLAY
-                </button>
+                </Link>
                 <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
                   <img className="w-5" src={add_icon} alt="..." />
                   MY LIST
@@ -490,7 +660,7 @@ const Home = (props) => {
               <>
                 <div
                   className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
-                  onClick={() => scrollLeft()}
+                  onClick={() => scrollContentLeft()}
                 >
                   <button className="text-white">
                     <img
@@ -567,7 +737,7 @@ const Home = (props) => {
           <div
             className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
             onMouseEnter={() => setShowButtons_2(true)}
-            onMouseLeave={() => SetShowButtons_2(false)}
+            onMouseLeave={() => setShowButtons_2(false)}
           >
             <div
               ref={carrouselRef_2}
@@ -576,19 +746,29 @@ const Home = (props) => {
             >
               {showButtons_2 && (
                 <>
-                  <div className="absolute z-50">
-                    <button
-                      className="text-white"
-                      onClick={() => scrollLeft_2()}
-                    >
-                      esquerda
+                  <div
+                    className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                    onClick={() => scrollContentLeft_2()}
+                  >
+                    <button className="text-white">
+                      <img
+                        className="w-10 shadow-2xl"
+                        src={arrow_prev_icon}
+                        alt=""
+                      />
                     </button>
                   </div>
                   <div
-                    className="absolute z-50 right-0"
+                    className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
                     onClick={() => scrollRight_2()}
                   >
-                    <button className="text-white">Direita</button>
+                    <button className="text-white">
+                      <img
+                        className="w-10 shadow-2xl"
+                        src={arrow_next_icon}
+                        alt=""
+                      />
+                    </button>
                   </div>
                 </>
               )}
@@ -602,7 +782,13 @@ const Home = (props) => {
                     alt={movie.title}
                     className="w-44 h-64 object-cover mb-1"
                   />
-                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <Link
+                    key={movie.id}
+                    to="/movie-details"
+                    state={{ movieID: movie.id }}
+                  >
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
                       {movie.title}
@@ -695,46 +881,81 @@ const Home = (props) => {
             </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_3(true)}
+            onMouseLeave={() => setShowButtons_3(false)}
           >
-            {topRatedSeries.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.name}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.first_air_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_3 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_3()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_3()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_3}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.name}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.first_air_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="w-full flex justify-center p-4">
             <div className="w-full laptop:w-5/6 h-96 bg-cover bg-center rounded-xl bg-hod-poster  m-4 p-8 flex flex-col items-start justify-between">
@@ -788,9 +1009,9 @@ const Home = (props) => {
                   </ul>
                 </nav>
                 <div className="flex">
-                  <button className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
+                  <Link className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
                     <img className="w-5" src={play_icon} alt="..." /> PLAY
-                  </button>
+                  </Link>
                   <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
                     <img className="w-5" src={add_icon} alt="..." />
                     MY LIST
@@ -800,88 +1021,158 @@ const Home = (props) => {
             </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_4(true)}
+            onMouseLeave={() => setShowButtons_4(false)}
           >
-            {topRatedSeriesPageTwo.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.name}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.first_air_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_4 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_4()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_4()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_4}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeriesPageTwo.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.name}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.first_air_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_5(true)}
+            onMouseLeave={() => setShowButtons_5(false)}
           >
-            {topRatedSeriesPageThree.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.name}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.first_air_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_5 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_5()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_5()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_5}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeriesPageThree.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.name}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.first_air_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="laptop:w-5/6 h-40 flex flex-col justify-center items-start gap-4">
             <nav>
@@ -947,88 +1238,158 @@ const Home = (props) => {
             </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_6(true)}
+            onMouseLeave={() => setShowButtons_6(false)}
           >
-            {topRatedSeries_2024.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.name}
-                  className="w-44 h-64 object-cover mb-1 "
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent "></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.first_air_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_6 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_6()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_6()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_6}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries_2024.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.name}
+                    className="w-44 h-64 object-cover mb-1 "
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent "></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.first_air_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_7(true)}
+            onMouseLeave={() => setShowButtons_7(false)}
           >
-            {topRatedSeries_2014.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.name}
-                  className="w-44 h-64 object-cover mb-1 "
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent "></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.first_air_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_7 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_7()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_7()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_7}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries_2014.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.name}
+                    className="w-44 h-64 object-cover mb-1 "
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent "></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.first_air_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}{" "}
+            </div>
           </div>
           <div className="laptop:w-5/6 h-40 flex flex-col justify-center items-start gap-4">
             <nav>
@@ -1094,88 +1455,170 @@ const Home = (props) => {
             </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_8(true)}
+            onMouseLeave={() => setShowButtons_8(false)}
           >
-            {topRatedSeries_heroes.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.release_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_8 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_8()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_8()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_8}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries_heroes.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <Link
+                    key={movie.id}
+                    to="/movie-details"
+                    state={{ movieID: movie.id }}
+                  >
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.release_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_9(true)}
+            onMouseLeave={() => setShowButtons_9(false)}
           >
-            {topRatedSeries_heroesPageTwo.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.release_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_9 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_9()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_9()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_9}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries_heroesPageTwo.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <Link
+                    key={movie.id}
+                    to="/movie-details"
+                    state={{ movieID: movie.id }}
+                  >
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.release_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="w-full flex justify-center p-4">
             <div className="w-full laptop:w-5/6 h-96 bg-cover bg-center rounded-xl bg-tb-poster  m-4 p-8 flex flex-col items-start justify-between">
@@ -1239,88 +1682,170 @@ const Home = (props) => {
             </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_10(true)}
+            onMouseLeave={() => setShowButtons_10(false)}
           >
-            {topRatedSeries_heroes_dc.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.release_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_10 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_10()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_10()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_10}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries_heroes_dc.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <Link
+                    key={movie.id}
+                    to="/movie-details"
+                    state={{ movieID: movie.id }}
+                  >
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.release_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
-            style={{ cursor: "grab" }}
+            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseEnter={() => setShowButtons_11(true)}
+            onMouseLeave={() => setShowButtons_11(false)}
           >
-            {topRatedSeries_heroes_dcPageTwo.map((movie) => (
-              <div
-                key={movie.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {movie.title}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-xs font-medium text-gray-300">
-                      {getOnlyYearDate(movie.release_date)}
-                    </p>
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {showButtons_11 && (
+              <>
+                <div
+                  className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollContentLeft_11()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_prev_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                  onClick={() => scrollRight_11()}
+                >
+                  <button className="text-white">
+                    <img
+                      className="w-10 shadow-2xl"
+                      src={arrow_next_icon}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </>
+            )}
+            <div
+              ref={carrouselRef_11}
+              className="carrousel relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-full items-center select-none"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {topRatedSeries_heroes_dcPageTwo.map((movie) => (
+                <div
+                  key={movie.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <Link
+                    key={movie.id}
+                    to="/movie-details"
+                    state={{ movieID: movie.id }}
+                  >
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {movie.title}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs font-medium text-gray-300">
+                        {getOnlyYearDate(movie.release_date)}
+                      </p>
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(movie.vote_average)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(movie.vote_average)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="laptop:w-5/6 h-24 flex flex-col justify-center items-start gap-4">
             <nav>
@@ -1366,7 +1891,11 @@ const Home = (props) => {
             <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            className="scroll-container flex overflow-x-scroll hide-scrollbar  justify-start laptop:w-5/6 items-center select-none"
             style={{ cursor: "grab" }}
           >
             {popularArtists.map((person) => (
@@ -1405,7 +1934,11 @@ const Home = (props) => {
             ))}
           </div>
           <div
-            className="hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            className="scroll-container flex overflow-x-scroll hide-scrollbar  justify-start laptop:w-5/6 items-center select-none"
             style={{ cursor: "grab" }}
           >
             {popularArtistsPageTwo.map((person) => (
