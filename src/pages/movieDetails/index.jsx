@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 import logo_full_light from "../../assets/images/logo-full-white.png";
 import logo_full_branding from "../../assets/images/logo-full-brandname.png";
-import logo_pacific_rim from "../../assets/images/pacific-rim-logo.png";
 import c_12 from "../../assets/images/c-12.png";
 import c_16 from "../../assets/images/c-16.png";
 import star_rating from "../../assets/images/star-rating.png";
@@ -18,16 +17,16 @@ import download_icon from "../../assets/images/icons/svg/download-minimalistic-s
 import chromecast_icon from "../../assets/images/icons/svg/chromecast-svgrepo-com.svg";
 import star_icon from "../../assets/images/icons/svg/star-svgrepo-com.svg";
 import menu_icon from "../../assets/images/icons/svg/menu-svgrepo-com.svg";
-import search_icon from "../../assets/images/icons/svg/search-alt-svgrepo-com.svg";
 import play_icon from "../../assets/images/icons/svg/play-svgrepo-com.svg";
 import play_bluish_icon from "../../assets/images/icons/svg/play-1003-svgrepo-com.svg";
-import play_styled_icon from "../../assets/images/icons/svg/play-styled-svgrepo-com.svg";
 import add_icon from "../../assets/images/icons/svg/add-svgrepo-com.svg";
 import trend_icon from "../../assets/images/icons/svg/trend-up-svgrepo-com.svg";
 import fire_icon from "../../assets/images/icons/svg/fire-svgrepo-com.svg";
 import star_filled_icon from "../../assets/images/icons/svg/star-filled-svgrepo-com.svg";
 import star_yellow_icon from "../../assets/images/icons/svg/star-svgrepo-yellow.svg";
 import heart_icon from "../../assets/images/icons/svg/heart-svgrepo-com.svg";
+import heart_red_icon from "../../assets/images/icons/svg/heart-red-svgrepo-com.svg";
+import clock_icon from "../../assets/images/icons/svg/clock-two-thirty-svgrepo-com.svg";
 import view_icon from "../../assets/images/icons/svg/eye-svgrepo-com.svg";
 import plus_icon_rounded from "../../assets/images/icons/svg/plus-circle-svgrepo-com.svg";
 import facebook_icon_white from "../../assets/images/icons/svg/facebook-svgrepo-com-white.svg";
@@ -44,6 +43,7 @@ import {
   getTopRatedSeries_heroes_dc,
   getArtists,
   getMovieCreditsByID,
+  getMovieVideos,
 } from "../../services/movie-api";
 
 import { useEffect, useState } from "react";
@@ -59,6 +59,7 @@ const MovieDetails = (props) => {
   const [popularArtistsPageTwo, setPopularArtistsPageTwo] = useState([]);
   const [movieDetails, setMovieDetails] = useState({});
   const [movieCredits, setMovieCredits] = useState({});
+  const [movieVideos, setMovieVideos] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -87,11 +88,13 @@ const MovieDetails = (props) => {
       console.log("ID LOCAL EXISTE E ESTA AQUI O ", localMovieID);
       getMovieDetails(localMovieID);
       getMovieCredits(localMovieID);
+      getMovieVideosByID(localMovieID);
     } else {
       console.log("ID LOCAL N EXISTE e foi criado agora ", movieID);
       localStorage.setItem("localMovieID", movieID);
       getMovieDetails(movieID);
       getMovieCredits(movieID);
+      getMovieVideosByID(movieID);
     }
   };
 
@@ -122,6 +125,13 @@ const MovieDetails = (props) => {
     setMovieCredits({
       cast: response.cast,
     });
+  };
+
+  const getMovieVideosByID = async (movieID) => {
+    const response = await getMovieVideos(movieID);
+    console.log(movieID);
+    console.log(response);
+    setMovieVideos(response.results);
   };
 
   const geTopRatedSeriesList_heroes_dc = async (page) => {
@@ -174,13 +184,20 @@ const MovieDetails = (props) => {
     return parseFloat(Number(rating).toFixed(1));
   };
 
+  const formatMinutes = (minutes) => {
+    const hour = Math.floor(minutes / 60);
+    const minutesLeft = minutes % 60;
+
+    return `${hour}h ${minutesLeft}min`;
+  };
+
   return (
     <div className="w-full h-full select-none">
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
         }}
-        className="relative w-full h-full min-h-screen bg-cover bg-bottom bg-no-repeat "
+        className="relative w-full h-fit min-h-screen bg-cover bg-bottom bg-no-repeat "
       >
         <header className="absolute z-50 w-full flex py-3 px items-center justify-center ">
           <div className="laptop:w-5/6 flex items-center justify-between">
@@ -321,8 +338,8 @@ const MovieDetails = (props) => {
           </nav>
         </aside>
 
-        <div className="absolute w-full h-full bg-cover-content-gradient bg-bottom flex flex-col items-center">
-          <div className="w-full laptop:min-h-96 flex justify-center items-center">
+        <div className="w-full h-fit min-h-screen bg-no-repeat bg-cover bg-bottom flex flex-col items-center ">
+          <div className="w-full laptop:min-h-96 flex justify-center items-center z-40">
             <a
               href="#"
               className="bg-gray-100 p-5 pl-5 rounded-full hover:scale-110 transition ease-in-out duration-300"
@@ -335,14 +352,14 @@ const MovieDetails = (props) => {
             </a>
           </div>
 
-          <div className="h-full laptop:min-h-96 laptop:w-5/6">
-            <div className="w-full flex items-center justify-between">
+          <div className="h-full laptop:min-h-96 laptop:w-5/6 z-40">
+            <div className="w-full flex items-center justify-between border-b border-gray-500 pb-1 mb-5">
               <div className="flex items-center gap-4 w-full flex-wrap justify-start">
                 <h2 className="text-3xl font-light text-gray-100">
                   {movieDetails.title}
                 </h2>
                 <p className="text-sm font-light text-gray-300">
-                  Tagline: {movieDetails.tagline}
+                  {movieDetails.tagline}
                 </p>
               </div>
               <div className="flex w-full h-7 justify-end  items-center gap-3 mb-4">
@@ -353,7 +370,7 @@ const MovieDetails = (props) => {
                 <img src={c_12} alt="..." />
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
                 <span className="text-sm text-gray-300 font-medium">
-                  2h 11m
+                  {formatMinutes(movieDetails.runtime)}
                 </span>
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
                 <div className="flex items-center gap-1">
@@ -364,58 +381,124 @@ const MovieDetails = (props) => {
                 </div>
               </div>
             </div>
-            <p className="text-gray-100">{movieDetails.overview}</p>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-              alt={movieDetails.title}
-            />
-            <p className="text-gray-100">
-              Linguagem: {movieDetails.original_language}
-            </p>
-            <p className="text-gray-100">
-              Popularidade: {movieDetails.popularity}
-            </p>
-            <p className="text-gray-100">
-              Lançamento: {movieDetails.release_date}
-            </p>
-            <p className="text-gray-100">
-              País de Origem: {movieDetails.origin_country}
-            </p>
-            <p className="text-gray-100">
-              Gêneros:{" "}
-              {movieDetails.genres?.map((genre) => genre.name).join(", ")}
-            </p>
-            <p className="text-gray-100">
-              Duração: {movieDetails.runtime} minutos
-            </p>
-            <a
-              href={movieDetails.homepage}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400"
-            >
-              Visitar página oficial
-            </a>
-          </div>
-          <div className="flex items-center">
-            {movieCredits.cast && movieCredits.cast.length > 0 ? (
-              movieCredits.cast.map((actor) =>
-                actor.profile_path ? (
-                  <div key={actor.id}>
-                    <span>{actor.name}</span>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-                      alt=""
-                    />
+            <div className="flex gap-8 h-fit items-center">
+              <div className="flex min-w-fit flex-col items-center gap-2">
+                <img
+                  className="w-48 rounded-lg"
+                  src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+                  alt={movieDetails.title}
+                />
+                <div className="w-full flex flex-col gap-1">
+                  <button className=" w-full text-xs rounded-md py-2 px-2 flex items-center gap-2 bg-neutral-800 text-gray-100">
+                    {" "}
+                    <img className="w-5" src={heart_red_icon} alt="" /> Watch
+                    later
+                  </button>
+                  <button className=" w-full text-xs rounded-md py-2 px-2 flex items-center gap-2 bg-neutral-900 text-gray-100">
+                    {" "}
+                    <img className="w-5" src={add_icon} alt="" /> Add to List
+                  </button>
+                  <button className=" w-full text-xs rounded-md py-2 px-2 flex items-center gap-2 bg-neutral-900 text-gray-100">
+                    {" "}
+                    <img className="w-5" src={clock_icon} alt="" /> Schedule
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-col w-1/2 gap-4 min-h-fit h-full justify-between ">
+                <span className="text-gray-100 text-xl">
+                  {movieDetails.title}
+                </span>
+                <p className="text-gray-300 text-sm font-medium uppercase">
+                  {movieDetails.genres?.map((genre) => genre.name).join(" - ")}
+                </p>
+                <p className="text-gray-300 text-sm font-light">
+                  {movieDetails.overview}
+                </p>
+                <div className="flex flex-col gap-1 text-sm">
+                  <div className="text-gray-100">
+                    <span className="text-gray-100">Country: </span>
+                    <span className="uppercase text-gray-300">
+                      {movieDetails.origin_country}
+                    </span>
                   </div>
-                ) : null
-              )
-            ) : (
-              <p>No cast information available.</p> // Mensagem alternativa para quando não há elenco
-            )}
+                  <div className="flex items-center">
+                    <span className="text-gray-100">Language: </span>
+                    <span className="uppercase text-gray-300">
+                      {movieDetails.original_language}
+                    </span>
+                  </div>
+                  <div className="text-gray-100">
+                    <span className="text-gray-100">Popularity: </span>
+                    <span className="uppercase text-gray-300">
+                      {movieDetails.popularity}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <a
+                    href={movieDetails.homepage}
+                    className="flex items-center text-sm bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
+                  >
+                    <img className="w-4" src={play_icon} alt="..." /> PLAY
+                  </a>
+                  <button className="flex items-center text-sm bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
+                    <img className="w-4" src={add_icon} alt="..." />
+                    MY LIST
+                  </button>
+                </div>
+                <div>
+                  <span className="block text-gray-100 mb-1">Cast:</span>
+                  <div className="flex items-center gap-2">
+                    {movieCredits.cast && movieCredits.cast.length > 0 ? (
+                      movieCredits.cast.map((actor, index) =>
+                        actor.profile_path && index < 5 ? (
+                          <div key={actor.id}>
+                            <img
+                              className="w-10 h-10 object-cover rounded-full border-2"
+                              title={actor.name}
+                              src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                              alt=""
+                            />
+                          </div>
+                        ) : null
+                      )
+                    ) : (
+                      <p>No cast information available.</p> // Mensagem alternativa para quando não há elenco
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex h-full flex-col gap-2">
+                <span className="text-gray-100 font-light">Gallery</span>
+                <div className="flex flex-col h-full  gap-4">
+                  {movieVideos.map((video, index) => {
+                    if (video.id && index < 2) {
+                      return (
+                        <div key={index}>
+                          {" "}
+                          <iframe
+                            width="274"
+                            height="154"
+                            src={`https://www.youtube.com/embed/${video.key}?si=${video.id}`}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                          ></iframe>
+                        </div>
+                      );
+                    }
+                    return null; // Retorna `null` se a condição não for satisfeita
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div className="absolute w-full h-full min-h-screen top-0 bg-cover-content-gradient bg-no-repeat bg-cover bg-bottom flex flex-col items-center z-10"></div>
       </div>
+
       <div className="w-full h-full flex justify-center">
         <main className="w-full flex flex-col items-center">
           <div className="w-full flex justify-center p-4">
