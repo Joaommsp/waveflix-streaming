@@ -44,6 +44,7 @@ import {
   getArtists,
   getMovieCreditsByID,
   getMovieVideos,
+  getMovieByGenre,
 } from "../../services/movie-api";
 
 import { useEffect, useState } from "react";
@@ -51,6 +52,7 @@ import { useEffect, useState } from "react";
 const MovieDetails = (props) => {
   const location = useLocation();
   const movieID = location.state ? location.state.movieID : null;
+  const movieGenreId = location.state ? location.state.movieGenreId : null;
 
   const [topRatedSeries_heroes_dc, setTopRatedSeries_heroes_dc] = useState([]);
   const [topRatedSeries_heroes_dcPageTwo, setTopRatedSeries_heroes_dcPageTwo] =
@@ -60,6 +62,8 @@ const MovieDetails = (props) => {
   const [movieDetails, setMovieDetails] = useState({});
   const [movieCredits, setMovieCredits] = useState({});
   const [movieVideos, setMovieVideos] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [similarMovies_page2, setSimilarMovies_page2] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,6 +71,7 @@ const MovieDetails = (props) => {
 
   useEffect(() => {
     setLocalMovieID();
+    setLocalMovieGenreID();
     geTopRatedSeriesList_heroes_dc(1);
     geTopRatedSeriesList_heroes_dcPageTwo(2);
     getPopularArtists(1);
@@ -81,6 +86,13 @@ const MovieDetails = (props) => {
       : null;
   };
 
+  const setLocalMovieGenreID = () => {
+    console.log("SITUACAO DO MOVIEGENRE ID", movieGenreId);
+    return movieGenreId != null
+      ? localStorage.setItem("localMovieGenreID", movieGenreId)
+      : null;
+  };
+
   const verifyLocalMovieID = () => {
     const localMovieID = localStorage.getItem("localMovieID");
 
@@ -89,12 +101,14 @@ const MovieDetails = (props) => {
       getMovieDetails(localMovieID);
       getMovieCredits(localMovieID);
       getMovieVideosByID(localMovieID);
+      getMoviesByGenreID(movieGenreId, 4);
     } else {
       console.log("ID LOCAL N EXISTE e foi criado agora ", movieID);
       localStorage.setItem("localMovieID", movieID);
       getMovieDetails(movieID);
       getMovieCredits(movieID);
       getMovieVideosByID(movieID);
+      getMoviesByGenreID(movieGenreId, 4);
     }
   };
 
@@ -132,6 +146,15 @@ const MovieDetails = (props) => {
     console.log(movieID);
     console.log(response);
     setMovieVideos(response.results);
+  };
+
+  const getMoviesByGenreID = async (genreId, page) => {
+    const response = await getMovieByGenre(genreId, page);
+    const response_page2 = await getMovieByGenre(genreId, page - 1);
+    console.log(genreId);
+    console.log(response);
+    setSimilarMovies(response.results);
+    setSimilarMovies_page2(response_page2.results)
   };
 
   const geTopRatedSeriesList_heroes_dc = async (page) => {
@@ -569,7 +592,7 @@ const MovieDetails = (props) => {
             onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
-            {topRatedSeries_heroes_dc.map((movie) => (
+            {similarMovies.map((movie) => (
               <div
                 key={movie.id}
                 className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
@@ -612,7 +635,7 @@ const MovieDetails = (props) => {
             onMouseDown={handleMouseDrag}
             style={{ cursor: "grab" }}
           >
-            {topRatedSeries_heroes_dcPageTwo.map((movie) => (
+            {similarMovies_page2.map((movie) => (
               <div
                 key={movie.id}
                 className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"

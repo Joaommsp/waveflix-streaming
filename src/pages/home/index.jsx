@@ -43,10 +43,6 @@ import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-co
 import {
   getPopularMovies,
   getTopRatedMovies,
-  getUpcomingMovies,
-  searchMovieGenres,
-  searchMovies,
-  searchTVGenres,
   getTopRatedSeries,
   getTopRatedSeries_2014,
   getTopRatedSeries_2024,
@@ -567,7 +563,7 @@ const Home = (props) => {
               <div className="flex items-center gap-4 mb-16">
                 <Link
                   to="/movie-details"
-                  state={{ movieID: 68726 }}
+                  state={{ movieID: 68726, movieGenreId: 28 }}
                   className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
                 >
                   <img className="w-5" src={play_icon} alt="..." /> PLAY
@@ -702,7 +698,10 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id }}
+                    state={{
+                      movieID: movie.id,
+                      movieGenreId: movie.genre_ids[0],
+                    }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -785,7 +784,7 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id }}
+                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1505,7 +1504,7 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id }}
+                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1588,7 +1587,7 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id }}
+                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1732,7 +1731,7 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id }}
+                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1815,7 +1814,7 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id }}
+                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
