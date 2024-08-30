@@ -40,6 +40,11 @@ import behance_icon from "../../assets/images/icons/svg/behance-svgrepo-com.svg"
 import arrow_prev_icon from "../../assets/images/icons/svg/arrow-prev-svgrepo-com.svg";
 import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-com.svg";
 
+import movie_menu_icon from "../../assets/images/icons/svg/movie-svgrepo-com.svg";
+import serie_menu_icon from "../../assets/images/icons/svg/kanban-svgrepo-com.svg";
+import tv_menu_icon from "../../assets/images/icons/svg/tv-svgrepo-com.svg";
+import info_menu_icon from "../../assets/images/icons/svg/info-circle-svgrepo-com.svg";
+
 import {
   getPopularMovies,
   getTopRatedMovies,
@@ -827,7 +832,7 @@ const Home = (props) => {
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={trend_icon} alt="" />
+                    <img className="w-5" src={movie_menu_icon} alt="" />
                     Movies
                   </Link>
                 </li>
@@ -836,7 +841,7 @@ const Home = (props) => {
                     className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-6" src={fire_icon} alt="" />
+                    <img className="w-6" src={serie_menu_icon} alt="" />
                     Series
                   </Link>
                 </li>
@@ -845,7 +850,7 @@ const Home = (props) => {
                     to={""}
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                   >
-                    <img className="w-5" src={add_icon} alt="" />
+                    <img className="w-5" src={tv_menu_icon} alt="" />
                     TV Shows
                   </Link>
                 </li>
@@ -854,7 +859,7 @@ const Home = (props) => {
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={star_filled_icon} alt="" />
+                    <img className="w-5" src={info_menu_icon} alt="" />
                     Documentaires
                   </Link>
                 </li>
@@ -1020,7 +1025,14 @@ const Home = (props) => {
                   </ul>
                 </nav>
                 <div className="flex">
-                  <Link className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: 94997,
+                      showGenreId: 10765,
+                    }}
+                    className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
+                  >
                     <img className="w-5" src={play_icon} alt="..." /> PLAY
                   </Link>
                   <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
@@ -1079,7 +1091,16 @@ const Home = (props) => {
                     alt={movie.name}
                     className="w-44 h-64 object-cover mb-1"
                   />
-                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
+                    }}
+                  >
+                    {" "}
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
                       {movie.name}
@@ -1156,7 +1177,16 @@ const Home = (props) => {
                     alt={movie.name}
                     className="w-44 h-64 object-cover mb-1"
                   />
-                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
+                    }}
+                  >
+                    {" "}
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
                       {movie.name}
@@ -1193,7 +1223,7 @@ const Home = (props) => {
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={trend_icon} alt="" />
+                    <img className="w-5" src={movie_menu_icon} alt="" />
                     Movies
                   </Link>
                 </li>
@@ -1202,7 +1232,7 @@ const Home = (props) => {
                     className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-6" src={fire_icon} alt="" />
+                    <img className="w-6" src={serie_menu_icon} alt="" />
                     Series
                   </Link>
                 </li>
@@ -1211,7 +1241,7 @@ const Home = (props) => {
                     to={""}
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                   >
-                    <img className="w-5" src={add_icon} alt="" />
+                    <img className="w-5" src={tv_menu_icon} alt="" />
                     TV Shows
                   </Link>
                 </li>
@@ -1220,7 +1250,7 @@ const Home = (props) => {
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={star_filled_icon} alt="" />
+                    <img className="w-5" src={info_menu_icon} alt="" />
                     Documentaires
                   </Link>
                 </li>
@@ -1296,7 +1326,16 @@ const Home = (props) => {
                     alt={movie.name}
                     className="w-44 h-64 object-cover mb-1 "
                   />
-                  <div className="absolute w-full h-full top-0 bg-transparent "></div>
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
+                    }}
+                  >
+                    {" "}
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
                       {movie.name}
@@ -1373,7 +1412,16 @@ const Home = (props) => {
                     alt={movie.name}
                     className="w-44 h-64 object-cover mb-1 "
                   />
-                  <div className="absolute w-full h-full top-0 bg-transparent "></div>
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
+                    }}
+                  >
+                    {" "}
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
                       {movie.name}
@@ -1410,7 +1458,7 @@ const Home = (props) => {
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={trend_icon} alt="" />
+                    <img className="w-5" src={movie_menu_icon} alt="" />
                     Movies
                   </Link>
                 </li>
@@ -1419,7 +1467,7 @@ const Home = (props) => {
                     className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-6" src={fire_icon} alt="" />
+                    <img className="w-6" src={serie_menu_icon} alt="" />
                     Series
                   </Link>
                 </li>
@@ -1428,7 +1476,7 @@ const Home = (props) => {
                     to={""}
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                   >
-                    <img className="w-5" src={add_icon} alt="" />
+                    <img className="w-5" src={tv_menu_icon} alt="" />
                     TV Shows
                   </Link>
                 </li>
@@ -1437,7 +1485,7 @@ const Home = (props) => {
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
-                    <img className="w-5" src={star_filled_icon} alt="" />
+                    <img className="w-5" src={info_menu_icon} alt="" />
                     Documentaires
                   </Link>
                 </li>
@@ -1687,9 +1735,17 @@ const Home = (props) => {
                   </ul>
                 </nav>
                 <div className="flex">
-                  <button className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
+                  {/* 76479 */}
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: 76479,
+                      showGenreId: 10765,
+                    }}
+                    className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
+                  >
                     <img className="w-5" src={play_icon} alt="..." /> PLAY
-                  </button>
+                  </Link>
                   <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
                     <img className="w-5" src={add_icon} alt="..." />
                     MY LIST
@@ -1875,20 +1931,11 @@ const Home = (props) => {
               <ul className="flex items-center gap-16">
                 <li>
                   <Link
-                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
-                    to={""}
-                  >
-                    <img className="w-5" src={trend_icon} alt="" />
-                    Movies
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     className="text-gray-100 text-base flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                     to={""}
                   >
                     <img className="w-6" src={fire_icon} alt="" />
-                    Series
+                    Popular
                   </Link>
                 </li>
                 <li>
@@ -1896,17 +1943,8 @@ const Home = (props) => {
                     to={""}
                     className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
                   >
-                    <img className="w-5" src={add_icon} alt="" />
-                    TV Shows
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-100 text-xs flex items-center gap-2 hover:opacity-60 transition ease-in-out"
-                    to={""}
-                  >
-                    <img className="w-5" src={star_filled_icon} alt="" />
-                    Documentaires
+                    <img className="w-5" src={fire_icon} alt="" />
+                    Trending
                   </Link>
                 </li>
               </ul>
@@ -1921,40 +1959,42 @@ const Home = (props) => {
             className="scroll-container flex overflow-x-scroll hide-scrollbar  justify-start laptop:w-5/6 items-center select-none"
             style={{ cursor: "grab" }}
           >
-            {popularArtists.map((person) => (
-              <div
-                key={person.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-                  alt={person.name}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {person.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {popularArtists.map((person) =>
+              person.profile_path != null ? (
+                <div
+                  key={person.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+                    alt={person.name}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {person.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(person.popularity)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(person.popularity)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ) : null
+            )}
           </div>
           <div
             onMouseDown={handleMouseDown}
@@ -1964,40 +2004,42 @@ const Home = (props) => {
             className="scroll-container flex overflow-x-scroll hide-scrollbar  justify-start laptop:w-5/6 items-center select-none"
             style={{ cursor: "grab" }}
           >
-            {popularArtistsPageTwo.map((person) => (
-              <div
-                key={person.id}
-                className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-                  alt={person.name}
-                  className="w-44 h-64 object-cover mb-1"
-                />
-                <div className="absolute w-full h-full top-0 bg-transparent"></div>
-                <div className="">
-                  <h3 className="text-sm truncate font-medium text-white mb-2">
-                    {person.name}
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-1 z-40">
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={heart_icon} alt="" />
-                      </button>
-                      <button className="p-1">
-                        {" "}
-                        <img className="w-4" src={view_icon} alt="" />
-                      </button>
+            {popularArtistsPageTwo.map((person) =>
+              person.profile_path != null ? (
+                <div
+                  key={person.id}
+                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+                    alt={person.name}
+                    className="w-44 h-64 object-cover mb-1"
+                  />
+                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <div className="">
+                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                      {person.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-1 z-40">
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={heart_icon} alt="" />
+                        </button>
+                        <button className="p-1">
+                          {" "}
+                          <img className="w-4" src={view_icon} alt="" />
+                        </button>
+                      </div>
+                      <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
+                        <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
+                        {formatRating(person.popularity)}
+                      </span>
                     </div>
-                    <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
-                      <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                      {formatRating(person.popularity)}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ) : null
+            )}
           </div>
           <div className="w-full flex justify-center p-4 mb-16">
             <div className="laptop:w-5/6 h-12 bg-neutral-800 w-full flex justify-center items-center">

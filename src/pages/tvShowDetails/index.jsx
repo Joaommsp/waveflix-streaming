@@ -336,7 +336,7 @@ const ShowDetails = (props) => {
           <nav className="flex flex-col h-full items-center justify-between">
             <ul className="w-full flex flex-col items-center gap-7">
               <li>
-                <Link to={""}>
+                <Link to={"/"}>
                   <img
                     className="w-6 hover:opacity-50 transition ease-in-out"
                     src={home_icon}
@@ -346,35 +346,23 @@ const ShowDetails = (props) => {
               </li>
               <li>
                 <Link to={""}>
-                  <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
-                    src={movie_icon}
-                    alt=""
-                  />
+                  <img className="w-6 opacity-30" src={movie_icon} alt="" />
+                </Link>
+              </li>
+              <li>
+                <Link to={""}>
+                  <img className="w-6 opacity-30" src={music_icon} alt="" />
+                </Link>
+              </li>
+              <li>
+                <Link to={""}>
+                  <img className="w-6 opacity-30" src={download_icon} alt="" />
                 </Link>
               </li>
               <li>
                 <Link to={""}>
                   <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
-                    src={music_icon}
-                    alt=""
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link to={""}>
-                  <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
-                    src={download_icon}
-                    alt=""
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link to={""}>
-                  <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
+                    className="w-6 opacity-30"
                     src={chromecast_icon}
                     alt=""
                   />
@@ -382,11 +370,7 @@ const ShowDetails = (props) => {
               </li>
               <li>
                 <Link to={""}>
-                  <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
-                    src={star_icon}
-                    alt=""
-                  />
+                  <img className="w-6 opacity-30" src={star_icon} alt="" />
                 </Link>
               </li>
             </ul>
@@ -625,15 +609,6 @@ const ShowDetails = (props) => {
                       </li>
                     </ul>
                   </nav>
-                  <div className="flex">
-                    <button className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
-                      <img className="w-5" src={play_icon} alt="..." /> PLAY
-                    </button>
-                    <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
-                      <img className="w-5" src={add_icon} alt="..." />
-                      MY LIST
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

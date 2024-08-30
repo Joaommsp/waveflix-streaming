@@ -336,7 +336,7 @@ const MovieDetails = (props) => {
           <nav className="flex flex-col h-full items-center justify-between">
             <ul className="w-full flex flex-col items-center gap-7">
               <li>
-                <Link to={""}>
+                <Link to={"/"}>
                   <img
                     className="w-6 hover:opacity-50 transition ease-in-out"
                     src={home_icon}
@@ -347,7 +347,7 @@ const MovieDetails = (props) => {
               <li>
                 <Link to={""}>
                   <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
+                    className="w-6 opacity-30"
                     src={movie_icon}
                     alt=""
                   />
@@ -356,7 +356,7 @@ const MovieDetails = (props) => {
               <li>
                 <Link to={""}>
                   <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
+                    className="w-6 opacity-30"
                     src={music_icon}
                     alt=""
                   />
@@ -365,7 +365,7 @@ const MovieDetails = (props) => {
               <li>
                 <Link to={""}>
                   <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
+                    className="w-6 opacity-30"
                     src={download_icon}
                     alt=""
                   />
@@ -374,7 +374,7 @@ const MovieDetails = (props) => {
               <li>
                 <Link to={""}>
                   <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
+                    className="w-6 opacity-30"
                     src={chromecast_icon}
                     alt=""
                   />
@@ -383,7 +383,7 @@ const MovieDetails = (props) => {
               <li>
                 <Link to={""}>
                   <img
-                    className="w-6 hover:opacity-50 transition ease-in-out"
+                    className="w-6 opacity-30"
                     src={star_icon}
                     alt=""
                   />
@@ -468,7 +468,9 @@ const MovieDetails = (props) => {
                     {movieDetails.title}
                   </span>
                   <p className="text-gray-300 text-sm font-medium uppercase">
-                    {movieDetails.genres?.map((genre) => genre.name).join(" - ")}
+                    {movieDetails.genres
+                      ?.map((genre) => genre.name)
+                      .join(" - ")}
                   </p>
                   <p className="text-gray-300 text-sm font-light">
                     {movieDetails.overview}
@@ -623,15 +625,6 @@ const MovieDetails = (props) => {
                       </li>
                     </ul>
                   </nav>
-                  <div className="flex">
-                    <button className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110">
-                      <img className="w-5" src={play_icon} alt="..." /> PLAY
-                    </button>
-                    <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
-                      <img className="w-5" src={add_icon} alt="..." />
-                      MY LIST
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
