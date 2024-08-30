@@ -784,7 +784,10 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
+                    state={{
+                      movieID: movie.id,
+                      movieGenreId: movie.genre_ids[0],
+                    }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -927,7 +930,16 @@ const Home = (props) => {
                     alt={movie.name}
                     className="w-44 h-64 object-cover mb-1"
                   />
-                  <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  <Link
+                    to="/show-details"
+                    state={{
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
+                    }}
+                  >
+                    {" "}
+                    <div className="absolute w-full h-full top-0 bg-transparent"></div>
+                  </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
                       {movie.name}
@@ -1504,7 +1516,10 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
+                    state={{
+                      movieID: movie.id,
+                      movieGenreId: movie.genre_ids[0],
+                    }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1587,7 +1602,10 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
+                    state={{
+                      movieID: movie.id,
+                      movieGenreId: movie.genre_ids[0],
+                    }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1731,7 +1749,10 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
+                    state={{
+                      movieID: movie.id,
+                      movieGenreId: movie.genre_ids[0],
+                    }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
@@ -1814,7 +1835,10 @@ const Home = (props) => {
                   <Link
                     key={movie.id}
                     to="/movie-details"
-                    state={{ movieID: movie.id, movieGenreId : movie.genre_ids[0] }}
+                    state={{
+                      movieID: movie.id,
+                      movieGenreId: movie.genre_ids[0],
+                    }}
                   >
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>

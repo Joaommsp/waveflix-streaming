@@ -41,20 +41,22 @@ import arrow_prev_icon from "../../assets/images/icons/svg/arrow-prev-svgrepo-co
 import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-com.svg";
 
 import {
-  getMovieDetailByID,
   getTopRatedSeries_heroes_dc,
   getArtists,
-  getMovieCreditsByID,
-  getMovieVideos,
+  getSerieCreditsByID,
   getMovieByGenre,
+  getShowDetailByID,
+  getSeriesVideos,
+  getSimilarSeries,
 } from "../../services/movie-api";
 
 import { useEffect, useState, useRef } from "react";
 
-const MovieDetails = (props) => {
+const ShowDetails = (props) => {
   const location = useLocation();
-  const movieID = location.state ? location.state.movieID : null;
-  const movieGenreId = location.state ? location.state.movieGenreId : null;
+
+  const showID = location.state ? location.state.showID : null;
+  const showGenreId = location.state ? location.state.showGenreId : null;
 
   const [topRatedSeries_heroes_dc, setTopRatedSeries_heroes_dc] = useState([]);
   const [topRatedSeries_heroes_dcPageTwo, setTopRatedSeries_heroes_dcPageTwo] =
@@ -83,64 +85,62 @@ const MovieDetails = (props) => {
     geTopRatedSeriesList_heroes_dcPageTwo(2);
     getPopularArtists(1);
     getPopularArtistsPageTwo(2);
-    verifyLocalMovieID();
+    verifyLocalShowID();
   }, []);
 
   const setLocalMovieID = () => {
-    console.log("SITUACAO DO MOVIE ID", movieID);
-    return movieID != null
-      ? localStorage.setItem("localMovieID", movieID)
-      : null;
+    console.log("SITUACAO DO SHOW ID ID", showID);
+    return showID != null ? localStorage.setItem("localShowID", showID) : null;
   };
 
   const setLocalMovieGenreID = () => {
-    console.log("SITUACAO DO MOVIEGENRE ID", movieGenreId);
-    return movieGenreId != null
-      ? localStorage.setItem("localMovieGenreID", movieGenreId)
+    console.log("SITUACAO DO SHOW ID", showGenreId);
+    return showGenreId != null
+      ? localStorage.setItem("localShowGenreID", showGenreId)
       : null;
   };
 
-  const verifyLocalMovieID = () => {
-    const localMovieID = localStorage.getItem("localMovieID");
+  const verifyLocalShowID = () => {
+    const localShowID = localStorage.getItem("localShowID");
 
-    if (localMovieID != null) {
-      console.log("ID LOCAL EXISTE E ESTA AQUI O ", localMovieID);
-      getMovieDetails(localMovieID);
-      getMovieCredits(localMovieID);
-      getMovieVideosByID(localMovieID);
-      getMoviesByGenreID(movieGenreId, 4);
+    if (localShowID != null) {
+      console.log("ID LOCAL EXISTE E ESTA AQUI O ", localShowID);
+      getMovieDetails(localShowID);
+      getMovieCredits(localShowID);
+      getMovieVideosByID(localShowID);
+      getMoviesByGenreID(showGenreId, 1);
     } else {
-      console.log("ID LOCAL N EXISTE e foi criado agora ", movieID);
-      localStorage.setItem("localMovieID", movieID);
-      getMovieDetails(movieID);
-      getMovieCredits(movieID);
-      getMovieVideosByID(movieID);
-      getMoviesByGenreID(movieGenreId, 4);
+      console.log("ID LOCAL N EXISTE e foi criado agora ", showID);
+      localStorage.setItem("localShowID", showID);
+      getMovieDetails(showID);
+      getMovieCredits(showID);
+      getMovieVideosByID(showID);
+      getMoviesByGenreID(showGenreId, 1);
     }
   };
 
-  const getMovieDetails = async (movieID) => {
-    const response = await getMovieDetailByID(movieID);
-    console.log(movieID);
+  const getMovieDetails = async (showID) => {
+    const response = await getShowDetailByID(showID);
+    console.log(showID);
     console.log(response);
     setMovieDetails({
       backdrop_path: response.backdrop_path,
-      title: response.title,
+      title: response.name,
       original_language: response.original_language,
       overview: response.overview,
       popularity: response.popularity,
       poster_path: response.poster_path,
-      release_date: getOnlyYearDate(response.release_date),
+      release_date: getOnlyYearDate(response.first_air_date),
       origin_country: response.origin_country[0],
       genres: response.genres,
       tagline: response.tagline,
       homepage: response.homepage,
-      runtime: response.runtime,
+      runtime: response.number_of_seasons,
     });
   };
 
   const getMovieCredits = async (movieID) => {
-    const response = await getMovieCreditsByID(movieID);
+    const response = await getSerieCreditsByID(movieID);
     console.log(movieID);
     console.log(response);
     setMovieCredits({
@@ -149,15 +149,15 @@ const MovieDetails = (props) => {
   };
 
   const getMovieVideosByID = async (movieID) => {
-    const response = await getMovieVideos(movieID);
+    const response = await getSeriesVideos(movieID);
     console.log(movieID);
     console.log(response);
     setMovieVideos(response.results);
   };
 
   const getMoviesByGenreID = async (genreId, page) => {
-    const response = await getMovieByGenre(genreId, page);
-    const response_page2 = await getMovieByGenre(genreId, page - 1);
+    const response = await getSimilarSeries(genreId, page);
+    const response_page2 = await getSimilarSeries(genreId, page + 1);
     console.log(genreId);
     console.log(response);
     setSimilarMovies(response.results);
@@ -428,7 +428,7 @@ const MovieDetails = (props) => {
                 <img src={c_12} alt="..." />
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
                 <span className="text-sm text-gray-300 font-medium">
-                  {formatMinutes(movieDetails.runtime)}
+                  {movieDetails.runtime} Seasons
                 </span>
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
                 <div className="flex items-center gap-1">
@@ -468,7 +468,9 @@ const MovieDetails = (props) => {
                     {movieDetails.title}
                   </span>
                   <p className="text-gray-300 text-sm font-medium uppercase">
-                    {movieDetails.genres?.map((genre) => genre.name).join(" - ")}
+                    {movieDetails.genres
+                      ?.map((genre) => genre.name)
+                      .join(" - ")}
                   </p>
                   <p className="text-gray-300 text-sm font-light">
                     {movieDetails.overview}
@@ -522,7 +524,7 @@ const MovieDetails = (props) => {
                           ) : null
                         )
                       ) : (
-                        <p>No cast information available.</p> // Mensagem alternativa para quando não há elenco
+                        <p>No cast information available.</p>
                       )}
                     </div>
                   </div>
@@ -686,10 +688,10 @@ const MovieDetails = (props) => {
                   />
                   <Link
                     key={movie.id}
-                    to="/movie-details"
+                    to="/show-details"
                     state={{
-                      movieID: movie.id,
-                      movieGenreId: movie.genre_ids[0],
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
                     }}
                     onClick={() => {
                       setInterval(() => {
@@ -701,11 +703,11 @@ const MovieDetails = (props) => {
                   </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
-                      {movie.title}
+                      {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
                       <p className="text-xs font-medium text-gray-300">
-                        {getOnlyYearDate(movie.release_date)}
+                        {getOnlyYearDate(movie.first_air_date)}
                       </p>
                       <div className="flex items-center gap-1 z-40">
                         <button className="p-1">
@@ -719,7 +721,7 @@ const MovieDetails = (props) => {
                       </div>
                       <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
                         <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                        {formatRating(movie.vote_average)}
+                        {movie.vote_average}
                       </span>
                     </div>
                   </div>
@@ -772,15 +774,15 @@ const MovieDetails = (props) => {
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
+                    alt={movie.name}
                     className="w-44 h-64 object-cover mb-1"
                   />
                   <Link
                     key={movie.id}
-                    to="/movie-details"
+                    to="/show-details"
                     state={{
-                      movieID: movie.id,
-                      movieGenreId: movie.genre_ids[0],
+                      showID: movie.id,
+                      showGenreId: movie.genre_ids[0],
                     }}
                     onClick={() => {
                       setInterval(() => {
@@ -792,11 +794,11 @@ const MovieDetails = (props) => {
                   </Link>
                   <div className="">
                     <h3 className="text-sm truncate font-medium text-white mb-2">
-                      {movie.title}
+                      {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
                       <p className="text-xs font-medium text-gray-300">
-                        {getOnlyYearDate(movie.release_date)}
+                        {getOnlyYearDate(movie.first_air_date)}
                       </p>
                       <div className="flex items-center gap-1 z-40">
                         <button className="p-1">
@@ -810,7 +812,7 @@ const MovieDetails = (props) => {
                       </div>
                       <span className="text-xs flex gap-1 items-center text-yellow-500 font-medium">
                         <img className="w-3" src={star_yellow_icon} alt="..." />{" "}
-                        {formatRating(movie.vote_average)}
+                        {movie.vote_average}
                       </span>
                     </div>
                   </div>
@@ -1035,8 +1037,9 @@ const MovieDetails = (props) => {
             </div>
             <div className="flex flex-col items-center gap-4">
               <span className="w-96 block text-gray-300 font-light text-xs text-center">
-                Website developed by João Marcos for personal and non
-                -commercial purposes, follow me on social media
+                BR Skip navigation Search 9+ Avatar image Website developed by
+                João Marcos for personal and non -commercial purposes, follow me
+                on social media
               </span>
               <div className="flex items-center gap-8">
                 <a href="https://www.instagram.com/jao.mms" target="_blank">
@@ -1066,6 +1069,6 @@ const MovieDetails = (props) => {
   );
 };
 
-MovieDetails.propTypes = {};
+ShowDetails.propTypes = {};
 
-export default MovieDetails;
+export default ShowDetails;

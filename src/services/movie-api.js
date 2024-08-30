@@ -145,7 +145,7 @@ const getTopRatedSeries = async (page) => {
       options
     );
     const data = await response.json();
-    console.log("testant", data);
+    console.log("SERIES AQUI", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -345,6 +345,102 @@ const getMovieByGenre = async (genreID, page) => {
   }
 };
 
+const getShowDetailByID = async (seriesID) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlN2M2MjIxMWNiMjJlZTY1Yjc0MDhlZmI0NTkzMGQyYyIsInN1YiI6IjY1ZjJlYTM5ZDY0YWMyMDE2NDVmODQzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oxMTZqm-hRT2yKvMNoW9SkTLVQ7NJog4-izAjXAq_M4",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/${seriesID}`,
+      options
+    );
+    const data = await response.json();
+    console.log("detalhes da série  aqui", data);
+    return data;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};
+
+const getSeriesVideos = async (seriesID) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlN2M2MjIxMWNiMjJlZTY1Yjc0MDhlZmI0NTkzMGQyYyIsInN1YiI6IjY1ZjJlYTM5ZDY0YWMyMDE2NDVmODQzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oxMTZqm-hRT2yKvMNoW9SkTLVQ7NJog4-izAjXAq_M4",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/${seriesID}/videos`,
+      options
+    );
+    const data = await response.json();
+    console.log("OLHA OS VIDEOS DA SERIE AQUI", data);
+    return data;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};
+
+const getSerieCreditsByID = async (seriesID) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlN2M2MjIxMWNiMjJlZTY1Yjc0MDhlZmI0NTkzMGQyYyIsInN1YiI6IjY1ZjJlYTM5ZDY0YWMyMDE2NDVmODQzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oxMTZqm-hRT2yKvMNoW9SkTLVQ7NJog4-izAjXAq_M4",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/${seriesID}/credits?`,
+      options
+    );
+    const data = await response.json();
+    console.log("creditos do filme aqui", data);
+    return data;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};
+
+const getSimilarSeries = async (genreID, page) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlN2M2MjIxMWNiMjJlZTY1Yjc0MDhlZmI0NTkzMGQyYyIsInN1YiI6IjY1ZjJlYTM5ZDY0YWMyMDE2NDVmODQzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oxMTZqm-hRT2yKvMNoW9SkTLVQ7NJog4-izAjXAq_M4",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/tv?api_key=YOUR_API_KEY&with_genres=${genreID}&vote_average.gte=7&first_air_date.gte=2010-01-01&page=${page}`,
+      options
+    );
+    const data = await response.json();
+    console.log("creditos do filme aquiiiii", data);
+    return data;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};
+
 export {
   getPopularMovies,
   getUpcomingMovies,
@@ -361,4 +457,8 @@ export {
   getMovieCreditsByID,
   getMovieVideos,
   getMovieByGenre,
+  getShowDetailByID,
+  getSeriesVideos,
+  getSerieCreditsByID,
+  getSimilarSeries,
 };
