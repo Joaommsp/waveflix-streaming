@@ -47,6 +47,8 @@ import info_menu_icon from "../../assets/images/icons/svg/info-circle-svgrepo-co
 import nav_menu_icon from "../../assets/images/icons/svg/menu-alt-01-svgrepo-com.svg";
 import close_menu_icon from "../../assets/images/icons/svg/close-circle-svgrepo-com.svg";
 
+import home_banner from "../../assets/images/home-screen-banner.png"
+
 import {
   getPopularMovies,
   getTopRatedMovies,
@@ -391,7 +393,11 @@ const Home = (props) => {
 
   return (
     <div className="w-full h-full select-none">
-      <div className="relative w-full h-full min-h-screen bg-home-banner bg-cover bg-top bg-no-repeat ">
+      <div 
+      style={{
+        backgroundImage: `url(${home_banner})`
+      }}
+      className="relative w-full h-full min-h-screen  bg-cover bg-top bg-no-repeat ">
         <header
           style={{
             backgroundColor: "#0000099",
