@@ -47,7 +47,9 @@ import info_menu_icon from "../../assets/images/icons/svg/info-circle-svgrepo-co
 import nav_menu_icon from "../../assets/images/icons/svg/menu-alt-01-svgrepo-com.svg";
 import close_menu_icon from "../../assets/images/icons/svg/close-circle-svgrepo-com.svg";
 
-import home_banner from "../../assets/images/home-screen-banner.png"
+import home_banner from "../../assets/images/home-screen-banner.png";
+import hod_banner from "../../assets/images/hod-poster.png";
+import tb_banner from "../../assets/images/tb-poster.png";
 
 import {
   getPopularMovies,
@@ -393,26 +395,26 @@ const Home = (props) => {
 
   return (
     <div className="w-full h-full select-none">
-      <div 
-      style={{
-        backgroundImage: `url(${home_banner})`
-      }}
-      className="relative w-full h-full min-h-screen  bg-cover bg-top bg-no-repeat ">
+      <div
+        style={{
+          backgroundImage: `url(${home_banner})`,
+        }}
+        className="relative w-full h-full min-h-screen  bg-cover bg-top bg-no-repeat "
+      >
         <header
           style={{
-            backgroundColor: "#0000099",
+            backgroundColor: "#090909",
           }}
           className="fixed laptop:static z-50  w-full flex py-2 laptop:py-3 px items-center justify-center laptop:bg-transparent"
         >
           <div className="relative   min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
-            <div className="flex absolute laptop:static items-center gap-16">
+            <div className="flex absolute left-2 laptop:static items-center gap-16">
               <img
                 src={logo_full_light}
-                className=" w-20 laptop:w-24 mr-12"
+                className="w-20 laptop:w-24 mr-12"
                 alt=""
               />
             </div>
-
             <div className="mobileMenu mt-12 laptop:mt-0 hidden laptop:flex flex-col laptop:flex-row items-center w-full justify-end laptop:justify-between gap-4 tablet:gap-10">
               <nav className=" mb-8 laptop:mb-0 laptop:flex laptop:items-center items-end justify-end">
                 <ul className="flex flex-col laptop:flex-row items-end laptop:items-center justify-end  gap-2 laptop:gap-8">
@@ -599,7 +601,6 @@ const Home = (props) => {
             </button>
           </nav>
         </aside>
-
         <div className="w-full px-3 tablet:px-5 laptop:px-0 flex h-full min-h-screen items-center justify-center py-20">
           <div className="flex flex-col laptop:w-5/6 gap-24">
             <div className="tablet:w-96 h-fit relative">
@@ -668,7 +669,6 @@ const Home = (props) => {
                   MY LIST
                 </button>
               </div>
-
               <button className="text-xs tablet:text-sm flex items-center bg-transparent  text-gray-100 py-2 gap-2 transition ease-in-out hover:scale-110">
                 <img className="w-5" src={play_styled_icon} alt="" />
                 WATCH TRAILER
@@ -678,7 +678,7 @@ const Home = (props) => {
         </div>
       </div>
       <div className="w-full h-full flex justify-center">
-        <main className="w-full flex flex-col items-center px-2 tablet:px-5 laptop:px-0">
+        <main className="w-full flex flex-col items-center tablet:px-5 laptop:px-0">
           <div className="h-32 laptop:h-40 w-full  px-2 laptop:px-0 laptop:w-5/6 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
@@ -686,7 +686,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -734,24 +734,24 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full overflow-scroll hide-scrollbar overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
             >
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Action
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Adventure
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Animation
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Fiction
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Heroes
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Comedy
               </button>
             </div>
@@ -797,7 +797,7 @@ const Home = (props) => {
               {popularMovies.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -883,7 +883,7 @@ const Home = (props) => {
               {topRatedMovies.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -935,7 +935,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -983,15 +983,15 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
             >
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Action
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Adventure
               </button>
-              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
+              <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Animation
               </button>
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
@@ -1046,7 +1046,7 @@ const Home = (props) => {
               {topRatedSeries.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1092,7 +1092,12 @@ const Home = (props) => {
             </div>
           </div>
           <div className="w-full flex justify-center p-0 laptop:p-4 mb-8 laptop:mb-0">
-            <div className="w-full laptop:w-5/6 h-full laptop:h-96 bg-cover tablet:bg-center rounded-xl bg-hod-poster  m-4 p-4 laptop:p-8 flex flex-col items-start justify-between">
+            <div
+              style={{
+                backgroundImage: `url(${hod_banner})`,
+              }}
+              className="w-full laptop:w-5/6 h-full laptop:h-96 bg-cover tablet:bg-center rounded-xl   m-2 laptop:m-4 p-4 laptop:p-8 flex flex-col items-start justify-between"
+            >
               <div className="flex w-full h-7  items-center gap-3 mb-4">
                 <img className="w-8" src={c_16} alt="..." />
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
@@ -1202,7 +1207,7 @@ const Home = (props) => {
               {topRatedSeriesPageTwo.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1288,7 +1293,7 @@ const Home = (props) => {
               {topRatedSeriesPageThree.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1341,7 +1346,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -1389,7 +1394,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
             >
               <button className="py-2  min-w-32 text-xs tablet:text-sm  w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Action
@@ -1452,7 +1457,7 @@ const Home = (props) => {
               {topRatedSeries_2024.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1538,7 +1543,7 @@ const Home = (props) => {
               {topRatedSeries_2014.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1590,7 +1595,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -1638,7 +1643,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
             >
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Action
@@ -1701,7 +1706,7 @@ const Home = (props) => {
               {topRatedSeries_heroes.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1787,7 +1792,7 @@ const Home = (props) => {
               {topRatedSeries_heroesPageTwo.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -1833,7 +1838,12 @@ const Home = (props) => {
             </div>
           </div>
           <div className="w-full flex justify-center p-0 laptop:p-4 mb-8 laptop:mb-0">
-            <div className="w-full laptop:w-5/6 h-full laptop:h-96 bg-cover bg-center rounded-xl bg-tb-poster  m-4 p-4 laptop:p-8 flex flex-col items-start justify-between">
+            <div
+              style={{
+                backgroundImage: `url(${tb_banner})`,
+              }}
+              className="w-full laptop:w-5/6 h-full laptop:h-96 bg-cover bg-center rounded-xl  m-2 laptop:m-4 p-4 laptop:p-8 flex flex-col items-start justify-between"
+            >
               <div className="flex w-full h-7  items-center gap-3 mb-4">
                 <img className="w-8" src={c_16} alt="..." />
                 <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
@@ -1943,7 +1953,7 @@ const Home = (props) => {
               {topRatedSeries_heroes_dc.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -2029,7 +2039,7 @@ const Home = (props) => {
               {topRatedSeries_heroes_dcPageTwo.map((movie) => (
                 <div
                   key={movie.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -2082,7 +2092,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll overflow-y-hidden"
+              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li>
@@ -2119,7 +2129,7 @@ const Home = (props) => {
               person.profile_path != null ? (
                 <div
                   key={person.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
@@ -2160,7 +2170,7 @@ const Home = (props) => {
               person.profile_path != null ? (
                 <div
                   key={person.id}
-                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
