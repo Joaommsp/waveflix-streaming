@@ -402,10 +402,10 @@ const Home = (props) => {
         className="relative w-full h-full min-h-screen  bg-cover bg-top bg-no-repeat "
       >
         <header
-          style={{
-            backgroundColor: "#090909",
-          }}
-          className="fixed laptop:static z-50  w-full flex py-2 laptop:py-3 px items-center justify-center laptop:bg-transparent"
+          // style={{
+          //   backgroundColor: "#090909",
+          // }}
+          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex py-2 laptop:py-3 px items-center justify-center "
         >
           <div className="relative   min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
             <div className="flex absolute left-2 laptop:static items-center gap-16">
@@ -678,7 +678,7 @@ const Home = (props) => {
         </div>
       </div>
       <div className="w-full h-full flex justify-center">
-        <main className="w-full flex flex-col items-center tablet:px-5 laptop:px-0">
+        <main className="w-full flex flex-col items-center px-0.5 tablet:px-5 laptop:px-0">
           <div className="h-32 laptop:h-40 w-full  px-2 laptop:px-0 laptop:w-5/6 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
@@ -686,7 +686,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
+              className="w-full hidden tablet:block hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -734,7 +734,7 @@ const Home = (props) => {
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full overflow-scroll hide-scrollbar overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hidden tablet:flex overflow-scroll hide-scrollbar overflow-y-hidden laptop:w-5/6 items-center justify-start gap-4"
             >
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Action
