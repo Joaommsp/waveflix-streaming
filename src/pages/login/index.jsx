@@ -86,9 +86,9 @@ const Login = () => {
                 <img className="w-8" src={microsoft_icon} alt="" />
               </a>
             </div>
-            <button className="w-full tablet:w-96 text-sm bg-blue-500 text-gray-100 rounded-full py-3 hover:bg-blue-400 transition ease-in-out mb-8">
+            <Link to={"/"} className="w-full tablet:w-96 text-sm flex justify-center items-center bg-blue-500 text-gray-100 rounded-full py-3 hover:bg-blue-400 transition ease-in-out mb-8">
               Login
-            </button>
+            </Link>
           </form>
           <span className="block text-xs text-gray-200 font-light text-center mb-8">
             Dont´t you have an account ?{" "}
