@@ -678,8 +678,8 @@ const Home = (props) => {
         </div>
       </div>
       <div className="w-full h-full flex justify-center">
-        <main className="w-full flex flex-col items-center px-0.5 tablet:px-5 laptop:px-0">
-          <div className="h-32 laptop:h-40 w-full  px-2 laptop:px-0 laptop:w-5/6 flex flex-col justify-center items-start gap-4">
+        <main className="w-full flex flex-col items-center px-1 tablet:px-5 laptop:px-0">
+          <div className="h-fit py-4 laptop:py-0 laptop:h-40 w-full  px-2 laptop:px-0 laptop:w-5/6 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
                 overflow: "auto",
@@ -727,7 +727,7 @@ const Home = (props) => {
                 </li>
               </ul>
             </nav>
-            <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="w-full hidden laptop:block h-0.5 bg-zinc-700 rounded-full"></div>
             <div
               style={{
                 overflow: "auto",
@@ -754,6 +754,56 @@ const Home = (props) => {
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Comedy
               </button>
+            </div>
+            <div className="flex items-center gap-2 laptop:hidden">
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Trending
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Popular
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    Recently added
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Premium
+                  </option>
+                </select>
+              </div>
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Action
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Adventure
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    Animation
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Fiction
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Heroes
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Comedy
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
           <div
@@ -815,7 +865,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -901,7 +951,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -928,14 +978,14 @@ const Home = (props) => {
               ))}
             </div>
           </div>
-          <div className="h-32 laptop:h-40 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
+          <div className="h-fit py-4 laptop:py-0 laptop:h-40 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
+              className="w-full hidden laptop:block hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -976,14 +1026,14 @@ const Home = (props) => {
                 </li>
               </ul>
             </nav>
-            <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="w-full hidden laptop:block h-0.5 bg-zinc-700 rounded-full"></div>
             <div
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hidden  hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 laptop:flex items-center justify-start gap-4"
             >
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out tablet:hover:scale-110">
                 Action
@@ -1003,6 +1053,56 @@ const Home = (props) => {
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
                 Comedy
               </button>
+            </div>
+            <div className="flex items-center gap-2 laptop:hidden">
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Movies
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Series
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    TV Shows
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Documentaries
+                  </option>
+                </select>
+              </div>
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Action
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Adventure
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    Animation
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Fiction
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Heroes
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Comedy
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
           <div
@@ -1064,7 +1164,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1225,7 +1325,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1311,7 +1411,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1339,14 +1439,14 @@ const Home = (props) => {
             </div>
           </div>
 
-          <div className="h-32 laptop:h-40 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
+          <div className="h-fit py-4 laptop:h-40 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
+              className="w-full hidden laptop:block hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -1387,14 +1487,14 @@ const Home = (props) => {
                 </li>
               </ul>
             </nav>
-            <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="w-full h-0.5 hidden  laptop:block bg-zinc-700 rounded-full"></div>
             <div
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hidden  hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 laptop:flex items-center justify-start gap-4"
             >
               <button className="py-2  min-w-32 text-xs tablet:text-sm  w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Action
@@ -1414,6 +1514,56 @@ const Home = (props) => {
               <button className="py-2  min-w-32 text-xs tablet:text-sm  w-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
                 Comedy
               </button>
+            </div>
+            <div className="flex items-center gap-2 laptop:hidden">
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Movies
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Series
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    TV Shows
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Documentaries
+                  </option>
+                </select>
+              </div>
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Action
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Adventure
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    Animation
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Fiction
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Heroes
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Comedy
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
           <div
@@ -1475,7 +1625,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1561,7 +1711,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1588,14 +1738,14 @@ const Home = (props) => {
               ))}{" "}
             </div>
           </div>
-          <div className="h-32 laptop:h-40 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
+          <div className="h-fit py-4 laptop:h-40 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
+              className="w-full hidden laptop:block hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li className="min-w-fit">
@@ -1636,14 +1786,14 @@ const Home = (props) => {
                 </li>
               </ul>
             </nav>
-            <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="w-full hidden laptop:block h-0.5 bg-zinc-700 rounded-full"></div>
             <div
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 flex items-center justify-start gap-4"
+              className="w-full hidden  hide-scrollbar overflow-scroll overflow-y-hidden laptop:w-5/6 laptop:flex items-center justify-start gap-4"
             >
               <button className="py-2 min-w-32 text-xs tablet:text-sm w-full text-gray-100 bg-blue-500 rounded-full transition ease-in-out hover:scale-110">
                 Action
@@ -1663,6 +1813,56 @@ const Home = (props) => {
               <button className="py-2 min-w-32 text-xs tablet:text-smw-full text-gray-100 bg-zinc-900 rounded-full transition ease-in-out hover:scale-110">
                 Comedy
               </button>
+            </div>
+            <div className="flex items-center gap-2 laptop:hidden">
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Movies
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Series
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    TV Shows
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Documentaries
+                  </option>
+                </select>
+              </div>
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Action
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Adventure
+                  </option>
+                  <option className="text-gray-950" value="mercedes">
+                    {" "}
+                    Animation
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Fiction
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Heroes
+                  </option>
+                  <option className="text-gray-950" value="audi">
+                    Comedy
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
           <div
@@ -1724,7 +1924,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1810,7 +2010,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -1971,7 +2171,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -2057,7 +2257,7 @@ const Home = (props) => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -2085,14 +2285,14 @@ const Home = (props) => {
             </div>
           </div>
 
-          <div className="h-24 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
+          <div className="h-fit py-4 w-full laptop:w-5/6 px-2 laptop:px-0 flex flex-col justify-center items-start gap-4">
             <nav
               style={{
                 overflow: "auto",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
-              className="w-full hide-scrollbar overflow-scroll overflow-y-hidden"
+              className="w-full hidden laptop:block hide-scrollbar overflow-scroll overflow-y-hidden"
             >
               <ul className="flex items-center gap-16">
                 <li>
@@ -2115,7 +2315,23 @@ const Home = (props) => {
                 </li>
               </ul>
             </nav>
-            <div className="w-full h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="w-full hidden laptop:block h-0.5 bg-zinc-700 rounded-full"></div>
+            <div className="flex items-center gap-2 laptop:hidden">
+              <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
+                <select
+                  className="bg-transparent text-sm text-gray-100 outline-none px-3 "
+                  name="category"
+                  id="category"
+                >
+                  <option className="text-gray-950" value="volvo">
+                    Trending
+                  </option>
+                  <option className="text-gray-950" value="saab">
+                    Popular
+                  </option>
+                </select>
+              </div>
+            </div>
           </div>
           <div
             onMouseDown={handleMouseDown}
@@ -2138,7 +2354,7 @@ const Home = (props) => {
                   />
                   <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {person.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -2179,7 +2395,7 @@ const Home = (props) => {
                   />
                   <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   <div className="">
-                    <h3 className="text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {person.name}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -2199,23 +2415,24 @@ const Home = (props) => {
               ) : null
             )}
           </div>
-          <div className="w-full flex justify-center p-4 laptop:mb-16 mb-8">
-            <div className="laptop:w-5/6 h-12 bg-neutral-800 w-full flex justify-center items-center">
-              <button className="flex items-center text-gray-300 font-normal gap-2">
+          <div className="w-full flex justify-center p-2 laptop:p-4 laptop:mb-16 mb-4">
+            <div className="laptop:w-5/6 h-8 laptop:h-12 bg-neutral-800 w-full flex justify-center items-center">
+              <button className="flex text-xs laptop:text-base items-center text-gray-300 font-normal gap-2">
                 <img className="w-5" src={plus_icon_rounded} alt="..." />
                 Show More
               </button>
             </div>
           </div>
           <footer className="w-full flex flex-col gap-16 bg-neutral-800 justify-center items-center rounded-t-xl laptop:rounded-t-none py-16 px-8">
-            <div className="flex items-start flex-wrap justify-between gap-16 laptop:w-5/6">
-              <div className="flex flex-wrap  items-start gap-16 laptop:w-5/6">
+            <div className="flex flex-col laptop:flex-row items-start justify-between gap-16 laptop:w-5/6">
+              <div className="flex flex-wrap  items-start gap-8 laptop:gap-16 laptop:w-5/6">
                 <div className="flex flex-col items-center">
                   <img
-                    className="max-w-36 laptop:min-w-56 mb-4"
+                    className="max-w-24 laptop:min-w-56 mb-4"
                     src={logo_full_branding}
                     alt="..."
                   />
+
                   <div>
                     <ul className="flex items-center gap-4">
                       <li>
@@ -2262,7 +2479,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#about-us"
-                        className="text-base text-gray-100 font-medium block  mb-4"
+                        className="text-sm laptop:text-base text-gray-100 font-medium block  mb-4"
                       >
                         For Users
                       </a>
@@ -2306,7 +2523,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#about-us"
-                        className="text-base text-gray-100 font-medium block  mb-4"
+                        className="text-sm laptop:text-base text-gray-100 font-medium block  mb-4"
                       >
                         About Us
                       </a>
@@ -2314,7 +2531,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#contact-us"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Contact Us
                       </a>
@@ -2322,7 +2539,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#investors"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Investors
                       </a>
@@ -2330,7 +2547,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#careers"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Careers
                       </a>
@@ -2338,7 +2555,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#blog"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Blog
                       </a>
@@ -2346,7 +2563,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#faq"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         FAQ
                       </a>
@@ -2358,7 +2575,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#about-us"
-                        className="text-base text-gray-100 font-medium block  mb-4"
+                        className="text-sm laptop:text-base text-gray-100 font-medium block  mb-4"
                       >
                         Content
                       </a>
@@ -2366,7 +2583,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#contact-us"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Movies
                       </a>
@@ -2374,7 +2591,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#investors"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Series
                       </a>
@@ -2382,7 +2599,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#careers"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Actors
                       </a>
@@ -2390,7 +2607,7 @@ const Home = (props) => {
                     <li>
                       <a
                         href="#blog"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Writers
                       </a>
