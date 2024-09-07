@@ -454,9 +454,9 @@ const Home = (props) => {
               </nav>
               <div className="flex flex-col laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
                 
-                  <div className="flex-col laptop:flex-row justify-end w-fit flex items-center gap-4 mb-4">
-                  <Link to={"/signin"} className="text-gray-100 font-light w-full text-end"  href="">Logout</Link>
-                  <Link to={"/login"} c className="text-gray-100 font-light w-full text-end" href="">Change Account</Link>
+                  <div className="flex-col laptop:flex-row justify-end w-full flex items-center gap-4 mb-4">
+                  <Link to={"/signin"} className="text-gray-100 font-light w-fit text-end"  href="">Logout</Link>
+                  <Link to={"/login"} c className="text-gray-100 font-light w-fit text-end" href="">Change Account</Link>
                   </div>
                 <div className="flex flex-row items-center gap-2 laptop:gap-4">
 
