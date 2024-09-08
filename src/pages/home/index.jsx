@@ -452,11 +452,11 @@ const Home = (props) => {
                   </li>
                 </ul>
               </nav>
-              <div className="flex flex-col laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
+              <div className="flex flex-col h-full justify-center laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
                 
-                  <div className="flex-col laptop:flex-row justify-end w-full flex items-center gap-4 mb-4">
-                  <Link to={"/signin"} className="text-gray-100 font-light w-fit text-end"  href="">Logout</Link>
-                  <Link to={"/login"} c className="text-gray-100 font-light w-fit text-end" href="">Change Account</Link>
+                  <div className="flex-collaptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
+                  <Link to={"/signin"} className="text-gray-100 font-light w-full text-end"  href="">Logout</Link>
+                  <Link to={"/login"} c className="text-gray-100 font-light shrink-0 text-end" href="">Change Account</Link>
                   </div>
                 <div className="flex flex-row items-center gap-2 laptop:gap-4">
 
@@ -476,7 +476,7 @@ const Home = (props) => {
                   </a>
                 </div>
                 <div className="flex  items-center gap-4 mb-8 laptop:mb-0">
-                  <span className="text-white">João M</span>
+                  <span className="text-white shrink-0">João M</span>
                   <img
                     className="rounded-full w-8 border-white border-2"
                     src="https://i.redd.it/lph9nhgtv6pb1.png"
@@ -654,7 +654,7 @@ const Home = (props) => {
                   <img className="w-5" src={star_rating} alt="" />
                 </div>
               </div>
-              <p className="w-full tablet:w-1/2 text-xs tablet:text-sm text-gray-100 font-light mb-8">
+              <p className="w-full tablet:w-full text-xs tablet:text-sm text-gray-100 font-light mb-8">
                 Lorem ipsum dolor sit amet consectetur. Nunc sit eget pharetra
                 ut at duis non justo turpis. Enim interdum etiam feugiat
                 egestas. Egestas ipsum in egestas tristique eget. Nibh elementum
@@ -761,7 +761,7 @@ const Home = (props) => {
                 Comedy
               </button>
             </div>
-            <div className="flex items-center gap-2 laptop:hidden">
+            <div className="flex items-center gap-2 tablet:hidden">
               <div className="bg-transparent border-2 text-sm border-gray-300 py-2 min-w-36 px-1 rounded-full">
                 <select
                   className="bg-transparent text-sm text-gray-100 outline-none px-3 "
@@ -2638,7 +2638,7 @@ const Home = (props) => {
               </div>
             </div>
             <div className="flex flex-col items-center gap-4">
-              <span className="w-96 block text-gray-300 font-light text-xs text-center">
+              <span className="w-full tablet:w-96 block text-gray-300 font-light text-xs text-center">
                 Website developed by João Marcos for personal and non
                 -commercial purposes, follow me on social media
               </span>
