@@ -551,7 +551,7 @@ const MovieDetails = (props) => {
                   <span className="text-gray-100 text-xl text-center tablet:text-left">
                     {movieDetails.title}
                   </span>
-                  <p className="text-gray-300 text-sm font-medium uppercase text-center tablet:text-left">
+                  <p className="text-gray-300 hidden laptop:block text-sm font-medium uppercase text-center tablet:text-left">
                     {movieDetails.genres
                       ?.map((genre) => genre.name)
                       .join(" - ")}
