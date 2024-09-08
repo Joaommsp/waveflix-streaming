@@ -1,4 +1,4 @@
-const getPopularMovies = async (page) => {
+const getPopularMovies = async () => {
   const options = {
     method: "GET",
     headers: {
