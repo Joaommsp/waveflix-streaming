@@ -506,7 +506,7 @@ const ShowDetails = (props) => {
             </a>
           </div>
 
-          <div className="h-full laptop:min-h-96 laptop:w-5/6 z-40">
+          <div className="h-full laptop:min-h-96 laptop:w-5/6 z-40 px-2 laptop:px-0">
             <div className="w-full flex flex-col gap-2 laptop:gap-0 laptop:flex-row items-center justify-between laptop:border-b border-gray-500 pb-1 mb-5">
               <div className="flex items-center flex-col laptop:flex-row gap-4 w-full flex-wrap justify-start">
                 <h2 className="text-3xl font-light text-gray-100">
@@ -517,25 +517,25 @@ const ShowDetails = (props) => {
                 </p>
               </div>
               <div className="flex w-full h-7  justify-center laptop:justify-end  items-center gap-3 mb-4">
-                <span className="text-sm text-gray-300 font-medium">
+                <span className="text-xs laptop:text-sm text-gray-300 font-medium">
                   {movieDetails.release_date}
                 </span>
                 <div className="bg-gray-300 hidden laptop:block w-0.5 h-full rounded-full"></div>
                 <img src={c_12} alt="..." />
                 <div className="bg-gray-300 w-0.5 h-full hidden laptop:block rounded-full"></div>
-                <span className="text-sm text-gray-300 font-medium">
+                <span className="text-xs laptop:text-sm text-gray-300 font-medium">
                   {movieDetails.runtime} seasons
                 </span>
                 <div className="bg-gray-300 w-0.5 h-full hidden laptop:block rounded-full"></div>
-                <span className="text-sm text-gray-300 font-medium">
+                <span className="text-xs laptop:text-sm text-gray-300 font-medium">
                   {movieDetails.episodes} espisodes
                 </span>
                 <div className="bg-gray-300 hidden laptop:block w-0.5 h-full rounded-full"></div>
                 <div className="flex items-center gap-1">
-                  <img className="w-5" src={star_rating} alt="" />
-                  <img className="w-5" src={star_rating} alt="" />
-                  <img className="w-5" src={star_rating} alt="" />
-                  <img className="w-5" src={star_rating} alt="" />
+                  <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                  <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                  <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                  <img className="w-4 laptop:w-5" src={star_rating} alt="" />
                 </div>
               </div>
             </div>
@@ -686,20 +686,20 @@ const ShowDetails = (props) => {
                 className="w-full  h-full rounded-xl p-4 laptop:p-8 flex flex-col items-start justify-between"
               >
                 <div className="flex w-full h-7  items-center gap-3 mb-4">
-                  <span className="text-sm text-gray-300 font-medium">
+                  <span className="text-xs laptop:text-sm text-gray-300 font-medium">
                     {movieDetails.release_date}
                   </span>
-                  <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
-                  <span className="text-sm text-gray-300 font-medium">
+                  <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
+                  <span className="text-xs laptop:text-sm text-gray-300 font-medium">
                     {movieDetails.runtime} Seasons
                   </span>
-                  <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                  <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
                   <div className="flex items-center gap-1">
-                    <img className="w-5" src={star_rating} alt="" />
-                    <img className="w-5" src={star_rating} alt="" />
-                    <img className="w-5" src={star_rating} alt="" />
-                    <img className="w-5" src={star_rating} alt="" />
-                    <img className="w-5" src={star_rating} alt="" />
+                    <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                    <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                    <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                    <img className="w-4 laptop:w-5" src={star_rating} alt="" />
+                 
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
