@@ -525,7 +525,7 @@ const MovieDetails = (props) => {
             </div>
             <div className="flex flex-col tablet:flex-row gap-8 justify-between h-fit items-start">
               <div className="flex flex-col tablet:flex-row tablet:flex-wrap gap-4 items-center justify-start laptop:items-center">
-                <div className="flex min-w-fit flex-col justify-start items-start laptop:items-center gap-2">
+                <div className="flex min-w-fit flex-col justify-start items-start laptop:items-center gap-2 mb-5 laptop:mb-0">
                   <img
                     className="w-72 laptop:w-48 rounded-lg"
                     src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
