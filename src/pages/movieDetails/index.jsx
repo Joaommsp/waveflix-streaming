@@ -43,6 +43,8 @@ import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-co
 import nav_menu_icon from "../../assets/images/icons/svg/menu-alt-01-svgrepo-com.svg";
 import close_menu_icon from "../../assets/images/icons/svg/close-circle-svgrepo-com.svg";
 
+import cover_poster_gradient from "../../assets/images/cover-content-image.png"
+
 import {
   getMovieDetailByID,
   getTopRatedSeries_heroes_dc,
@@ -272,8 +274,9 @@ const MovieDetails = (props) => {
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
+          backgroundSize: "1500px"
         }}
-        className="relative w-full h-fit min-h-screen bg-cover bg-bottom bg-no-repeat mb-8 "
+        className="relative w-full h-fit min-h-screen bg-top bg-no-repeat mb-8 "
       >
         <header
           // style={{
@@ -641,7 +644,12 @@ const MovieDetails = (props) => {
             </div>
           </div>
         </div>
-        <div className="absolute w-full h-full min-h-screen top-0 bg-cover-content-gradient bg-no-repeat bg-cover bg-bottom flex flex-col items-center z-10"></div>
+        <div
+        style={
+         { backgroundImage: `url(${cover_poster_gradient})`}
+      
+        }
+        className="absolute w-full tablet:h-full min-h-screen top-0 bg-no-repeat bg-cover bg-top flex flex-col items-center z-10"></div>
       </div>
 
       <div className="w-full h-full flex justify-center">
