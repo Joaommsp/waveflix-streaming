@@ -646,10 +646,13 @@ const MovieDetails = (props) => {
         </div>
         <div
         style={
-         { backgroundImage: `url(${cover_poster_gradient})`}
+         { backgroundImage: `url(${cover_poster_gradient})
+         `,
+        height: "900px"
+        }
       
         }
-        className="absolute w-full tablet:h-full min-h-screen top-0 bg-no-repeat bg-cover bg-top flex flex-col items-center z-10"></div>
+        className="absolute w-full  min-h-screen top-0 bg-no-repeat bg-cover bg-top flex flex-col items-center z-10"></div>
       </div>
 
       <div className="w-full h-full flex justify-center">
