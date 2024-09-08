@@ -40,6 +40,12 @@ import behance_icon from "../../assets/images/icons/svg/behance-svgrepo-com.svg"
 import arrow_prev_icon from "../../assets/images/icons/svg/arrow-prev-svgrepo-com.svg";
 import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-com.svg";
 
+import nav_menu_icon from "../../assets/images/icons/svg/menu-alt-01-svgrepo-com.svg";
+import close_menu_icon from "../../assets/images/icons/svg/close-circle-svgrepo-com.svg";
+import home_menu_icon from "../../assets/images/icons/svg/home-page-svgrepo-com.svg";
+
+import cover_poster_gradient from "../../assets/images/cover-content-image.png";
+
 import {
   getTopRatedSeries_heroes_dc,
   getArtists,
@@ -70,6 +76,8 @@ const ShowDetails = (props) => {
   const [similarMovies_page2, setSimilarMovies_page2] = useState([]);
   const [showButtons, setShowButtons] = useState(false);
   const [showButtons_2, setShowButtons_2] = useState(false);
+
+  const [menuIcon, setMenuIcon] = useState(nav_menu_icon);
 
   const carrouselRef = useRef(null);
   const carrouselRef_2 = useRef(null);
@@ -136,6 +144,7 @@ const ShowDetails = (props) => {
       tagline: response.tagline,
       homepage: response.homepage,
       runtime: response.number_of_seasons,
+      episodes: response.number_of_episodes,
     });
   };
 
@@ -249,20 +258,45 @@ const ShowDetails = (props) => {
     });
   };
 
+  const controlMenuMobile = () => {
+    const menu = document.querySelector(".mobileMenu");
+
+    menu.classList.toggle("hidden");
+
+    if (menuIcon == nav_menu_icon) {
+      console.log("CU");
+      setMenuIcon(close_menu_icon);
+    } else {
+      setMenuIcon(nav_menu_icon);
+    }
+  };
+
   return (
     <div className="w-full h-full select-none">
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
+          backgroundSize: "1500px",
         }}
-        className="relative w-full h-fit min-h-screen bg-cover bg-bottom bg-no-repeat mb-8 "
+        className="relative w-full h-fit min-h-screen bg-top bg-no-repeat mb-8 "
       >
-        <header className="absolute z-50 w-full flex py-3 px items-center justify-center ">
-          <div className="laptop:w-5/6 flex items-center justify-between">
-            <div className="flex items-center gap-16">
-              <img src={logo_full_light} className="w-24" alt="" />
-              <nav className="flex items-center">
-                <ul className="flex items-center gap-8">
+        <header
+          // style={{
+          //   backgroundColor: "#090909",
+          // }}
+          className="fixed laptop:absolute z-50 bg-neutral-950 laptop:bg-transparent w-full flex py-2 laptop:py-3 px items-center justify-center "
+        >
+          <div className="relative  min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
+            <div className="flex absolute left-2 laptop:static items-center gap-16">
+              <img
+                src={logo_full_light}
+                className="w-20 laptop:w-24 mr-12"
+                alt=""
+              />
+            </div>
+            <div className="mobileMenu mt-12 laptop:mt-0 hidden laptop:flex flex-col laptop:flex-row items-center w-full justify-end laptop:justify-between gap-4 tablet:gap-10">
+              <nav className=" mb-8 laptop:mb-0 laptop:flex laptop:items-center items-end justify-end">
+                <ul className="flex flex-col laptop:flex-row items-end laptop:items-center justify-end  gap-2 laptop:gap-8">
                   <li>
                     <a
                       className="text-sm font-light text-gray-100 hover:text-blue-200 transition ease-in-out"
@@ -297,32 +331,108 @@ const ShowDetails = (props) => {
                   </li>
                 </ul>
               </nav>
+              <div className="flex flex-col h-full justify-center laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
+                <div className="flex-col laptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
+                  <Link
+                    to={"/signin"}
+                    className="text-gray-100 font-light w-full text-end"
+                    href=""
+                  >
+                    Logout
+                  </Link>
+                  <Link
+                    to={"/login"}
+                    c
+                    className="text-gray-100 font-light shrink-0 text-end"
+                    href=""
+                  >
+                    Change Account
+                  </Link>
+                </div>
+                <div className="flex flex-row items-center gap-2 laptop:gap-4">
+                  <a href="">
+                    <img
+                      className="w-7 hover:scale-125 transition ease-in-out"
+                      src={notific_icon}
+                      alt="..."
+                    />
+                  </a>
+                  <a href="">
+                    <img
+                      className="w-7 hover:scale-125 transition ease-in-out"
+                      src={user_icon}
+                      alt="..."
+                    />
+                  </a>
+                </div>
+                <div className="flex  items-center gap-4 mb-8 laptop:mb-0">
+                  <span className="text-white shrink-0">João M</span>
+                  <img
+                    className="rounded-full w-8 border-white border-2"
+                    src="https://i.redd.it/lph9nhgtv6pb1.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div className="mb-8 laptop:hidden">
+                <ul className="flex flex-col justify-start items-end">
+                  <li>
+                    <a
+                      href="#contact-us"
+                      className="text-sm text-gray-300 font-light"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#investors"
+                      className="text-sm text-gray-300 font-light"
+                    >
+                      Investors
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#careers"
+                      className="text-sm text-gray-300 font-light"
+                    >
+                      Careers
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#blog"
+                      className="text-sm text-gray-300 font-light"
+                    >
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#faq" className="text-sm text-gray-300 font-light">
+                      FAQ
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <span className="w-full block text-gray-50 font-light text-xs text-center mb-4 laptop:hidden">
+                Website developed by João Marcos for personal and non
+                -commercial purposes, follow me on social media
+              </span>
             </div>
-            <div className="flex items-center gap-10">
-              <div className="flex items-center gap-4">
-                <a href="">
-                  <img
-                    className="w-7 hover:scale-125 transition ease-in-out"
-                    src={notific_icon}
-                    alt="..."
-                  />
-                </a>
-                <a href="">
-                  <img
-                    className="w-7 hover:scale-125 transition ease-in-out"
-                    src={user_icon}
-                    alt="..."
-                  />
-                </a>
-              </div>
-              <div className="flex items-center gap-4">
-                <span className="text-white">João M</span>
-                <img
-                  className="rounded-full w-8 border-white border-2"
-                  src="https://i.redd.it/lph9nhgtv6pb1.png"
-                  alt=""
-                />
-              </div>
+            <div className="flex z-50 absolute top-0 right-2 laptop:hidden gap-2">
+              <Link
+                to={"/"}
+                className="flex laptop:hidden justify-center items-center"
+              >
+                <img className="w-6" src={home_menu_icon} alt="..." />
+              </Link>
+              <button
+                onClick={() => controlMenuMobile()}
+                className="flex laptop:hidden justify-center items-center"
+              >
+                <img className="w-8" src={menuIcon} alt=".." />
+              </button>
             </div>
           </div>
         </header>
@@ -331,7 +441,7 @@ const ShowDetails = (props) => {
             background:
               "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 100%)",
           }}
-          className="fixed top-0 left-0 flex  flex-col items-center h-screen w-16 px-4 pt-16 pb-4 z-50"
+          className="hidden desktop:flex fixed top-0 left-0   flex-col items-center h-screen w-16 px-4 pt-16 pb-4 z-50"
         >
           <nav className="flex flex-col h-full items-center justify-between">
             <ul className="w-full flex flex-col items-center gap-7">
@@ -380,23 +490,25 @@ const ShowDetails = (props) => {
           </nav>
         </aside>
 
-        <div className="w-full h-fit min-h-screen bg-no-repeat bg-cover bg-bottom flex flex-col items-center ">
-          <div className="w-full laptop:min-h-96 flex justify-center items-center z-40">
+        <div className="w-full h-fit min-h-screen bg-no-repeat bg-cover bg-bottom flex flex-col items-center px-2 tablet:px-8">
+          <div className="w-full min-h-96 aptop:min-h-96 flex justify-center items-center z-40">
             <a
               href="#"
               className="bg-gray-100 p-5 pl-5 rounded-full hover:scale-110 transition ease-in-out duration-300"
             >
-              <img
-                className="w-5 ml-0.5 rotate-center transition ease-in-out duration-300"
-                src={play_bluish_icon}
-                alt="..."
-              />
+              <a href={movieDetails.homepage}>
+                <img
+                  className="w-5 ml-0.5 rotate-center transition ease-in-out duration-300"
+                  src={play_bluish_icon}
+                  alt="..."
+                />
+              </a>
             </a>
           </div>
 
           <div className="h-full laptop:min-h-96 laptop:w-5/6 z-40">
-            <div className="w-full flex items-center justify-between border-b border-gray-500 pb-1 mb-5">
-              <div className="flex items-center gap-4 w-full flex-wrap justify-start">
+            <div className="w-full flex flex-col gap-2 laptop:gap-0 laptop:flex-row items-center justify-between laptop:border-b border-gray-500 pb-1 mb-5">
+              <div className="flex items-center flex-col laptop:flex-row gap-4 w-full flex-wrap justify-start">
                 <h2 className="text-3xl font-light text-gray-100">
                   {movieDetails.title}
                 </h2>
@@ -404,17 +516,21 @@ const ShowDetails = (props) => {
                   {movieDetails.tagline}
                 </p>
               </div>
-              <div className="flex w-full h-7 justify-end  items-center gap-3 mb-4">
+              <div className="flex w-full h-7  justify-center laptop:justify-end  items-center gap-3 mb-4">
                 <span className="text-sm text-gray-300 font-medium">
                   {movieDetails.release_date}
                 </span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="bg-gray-300 hidden laptop:block w-0.5 h-full rounded-full"></div>
                 <img src={c_12} alt="..." />
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="bg-gray-300 w-0.5 h-full hidden laptop:block rounded-full"></div>
                 <span className="text-sm text-gray-300 font-medium">
-                  {movieDetails.runtime} Seasons
+                  {movieDetails.runtime} seasons
                 </span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="bg-gray-300 w-0.5 h-full hidden laptop:block rounded-full"></div>
+                <span className="text-sm text-gray-300 font-medium">
+                  {movieDetails.episodes} espisodes
+                </span>
+                <div className="bg-gray-300 hidden laptop:block w-0.5 h-full rounded-full"></div>
                 <div className="flex items-center gap-1">
                   <img className="w-5" src={star_rating} alt="" />
                   <img className="w-5" src={star_rating} alt="" />
@@ -423,11 +539,11 @@ const ShowDetails = (props) => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-8 justify-between h-fit items-center">
-              <div className="flex gap-4 items-center">
-                <div className="flex min-w-fit flex-col items-center gap-2">
+            <div className="flex flex-col tablet:flex-row gap-8 justify-between h-fit items-start">
+              <div className="flex flex-col tablet:flex-row tablet:flex-wrap gap-4 items-center justify-start laptop:items-center">
+                <div className="flex min-w-fit flex-col justify-start items-start laptop:items-center gap-2 mb-5 laptop:mb-0">
                   <img
-                    className="w-48 rounded-lg"
+                    className="w-72 laptop:w-48 rounded-lg"
                     src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
                     alt={movieDetails.title}
                   />
@@ -447,16 +563,16 @@ const ShowDetails = (props) => {
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-col w-1/2 gap-4 min-h-fit h-full justify-between ">
-                  <span className="text-gray-100 text-xl">
+                <div className="flex flex-col w-full laptop:w-1/2 gap-4 min-h-fit h-full justify-between ">
+                  <span className="text-gray-100 text-xl text-center tablet:text-left">
                     {movieDetails.title}
                   </span>
-                  <p className="text-gray-300 text-sm font-medium uppercase">
+                  <p className="text-gray-300 hidden laptop:block text-sm font-medium uppercase text-center tablet:text-left">
                     {movieDetails.genres
                       ?.map((genre) => genre.name)
                       .join(" - ")}
                   </p>
-                  <p className="text-gray-300 text-sm font-light">
+                  <p className="text-gray-300 text-sm font-light ">
                     {movieDetails.overview}
                   </p>
                   <div className="flex flex-col gap-1 text-sm">
@@ -508,14 +624,16 @@ const ShowDetails = (props) => {
                           ) : null
                         )
                       ) : (
-                        <p>No cast information available.</p>
+                        <p>No cast information available.</p> // Mensagem alternativa para quando não há elenco
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="flex h-full flex-col gap-2">
-                <span className="text-gray-100 font-light">Gallery</span>
+              <div className="flex w-full laptop:w-fit h-full flex-col justify-center tablet:justify-start items-center tabletitems-start gap-2">
+                <span className="text-gray-100 font-light tablet:text-xl">
+                  Gallery
+                </span>
                 <div className="flex flex-col h-full  gap-4">
                   {movieVideos.map((video, index) => {
                     if (video.id && index < 2) {
@@ -542,12 +660,19 @@ const ShowDetails = (props) => {
             </div>
           </div>
         </div>
-        <div className="absolute w-full h-full min-h-screen top-0 bg-cover-content-gradient bg-no-repeat bg-cover bg-bottom flex flex-col items-center z-10"></div>
+        <div
+          style={{
+            backgroundImage: `url(${cover_poster_gradient})
+         `,
+            height: "900px",
+          }}
+          className="absolute w-full  min-h-screen top-0 bg-no-repeat bg-cover bg-top flex flex-col items-center z-10"
+        ></div>
       </div>
 
       <div className="w-full h-full flex justify-center">
         <main className="w-full flex flex-col items-center">
-          <div className="w-full flex justify-center ">
+          <div className="w-full  flex justify-center mb-4 ">
             <div
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
@@ -558,7 +683,7 @@ const ShowDetails = (props) => {
                 style={{
                   backgroundColor: "#00000090",
                 }}
-                className="w-full  h-full rounded-xl p-8 flex flex-col items-start justify-between"
+                className="w-full  h-full rounded-xl p-4 laptop:p-8 flex flex-col items-start justify-between"
               >
                 <div className="flex w-full h-7  items-center gap-3 mb-4">
                   <span className="text-sm text-gray-300 font-medium">
@@ -566,7 +691,7 @@ const ShowDetails = (props) => {
                   </span>
                   <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
                   <span className="text-sm text-gray-300 font-medium">
-                    {formatMinutes(movieDetails.runtime)}
+                    {movieDetails.runtime} Seasons
                   </span>
                   <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
                   <div className="flex items-center gap-1">
@@ -578,7 +703,7 @@ const ShowDetails = (props) => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <h2 className="text-gray-100 text-4xl font-medium">
+                  <h2 className="text-gray-100 text-xl laptop:text-4xl font-medium">
                     {movieDetails.title}
                   </h2>
                   <p className="text-gray-300 font-light text-sm">
@@ -614,7 +739,7 @@ const ShowDetails = (props) => {
             </div>
           </div>
           <div
-            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            className="w-full relative hide-scrollbar flex laptop:overflow-x-auto justify-start laptop:w-5/6 items-center select-none px-2 laptop:px-0"
             onMouseEnter={() => setShowButtons_2(true)}
             onMouseLeave={() => setShowButtons_2(false)}
           >
@@ -626,7 +751,7 @@ const ShowDetails = (props) => {
               {showButtons_2 && (
                 <>
                   <div
-                    className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                    className="hover:bg-black hidden carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full laptop:flex justify-center items-center p-2 transition ease-in-out"
                     onClick={() => scrollContentLeft_2()}
                   >
                     <button className="text-white">
@@ -638,7 +763,7 @@ const ShowDetails = (props) => {
                     </button>
                   </div>
                   <div
-                    className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                    className="hover:bg-black hidden  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full laptop:flex justify-center items-center p-2 transition ease-in-out"
                     onClick={() => scrollRight_2()}
                   >
                     <button className="text-white">
@@ -654,12 +779,12 @@ const ShowDetails = (props) => {
               {similarMovies.map((movie) => (
                 <div
                   key={movie.id}
-                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-44 h-64 object-cover mb-1"
+                    className="laptop:w-44 laptop:h-64 w-full h-48 object-cover mb-1"
                   />
                   <Link
                     key={movie.id}
@@ -705,7 +830,7 @@ const ShowDetails = (props) => {
             </div>
           </div>
           <div
-            className="relative hide-scrollbar flex overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
+            className="w-full relative hide-scrollbar flex laptop:overflow-x-auto justify-start laptop:w-5/6 items-center select-none"
             onMouseEnter={() => setShowButtons(true)}
             onMouseLeave={() => setShowButtons(false)}
           >
@@ -717,7 +842,7 @@ const ShowDetails = (props) => {
               {showButtons && (
                 <>
                   <div
-                    className="hover:bg-black carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                    className="hover:bg-black hidden carrouselBtn  hover:opacity-85 rounded-s-xl cursor-pointer absolute z-50 h-full laptop:flex justify-center items-center p-2 transition ease-in-out"
                     onClick={() => scrollContentLeft()}
                   >
                     <button className="text-white">
@@ -729,7 +854,7 @@ const ShowDetails = (props) => {
                     </button>
                   </div>
                   <div
-                    className="hover:bg-black  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full flex justify-center items-center p-2 transition ease-in-out"
+                    className="hover:bg-black hidden  carrouselBtn  hover:opacity-85 rounded-e-xl cursor-pointer absolute -right-0.5  z-50 h-full laptop:flex justify-center items-center p-2 transition ease-in-out"
                     onClick={() => scrollRight()}
                   >
                     <button className="text-white">
@@ -745,12 +870,12 @@ const ShowDetails = (props) => {
               {similarMovies_page2.map((movie) => (
                 <div
                   key={movie.id}
-                  className=" hover:scale-110 transition ease-in-out duration-500 relative min-w-40 h-fit bg-transparent rounded-lg overflow-hidden m-4 shadow-lg"
+                  className="laptop:hover:scale-110 transition ease-in-out duration-500 relative min-w-32 laptop:min-w-40 h-fit bg-transparent rounded-lg overflow-hidden  m-2 laptop:m-4 shadow-lg"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.name}
-                    className="w-44 h-64 object-cover mb-1"
+                    className="laptop:w-44 laptop:h-64 w-full h-48 object-cover mb-1"
                   />
                   <Link
                     key={movie.id}
@@ -795,23 +920,17 @@ const ShowDetails = (props) => {
               ))}
             </div>
           </div>
-          <div className="w-full flex justify-center p-4 mb-16">
-            <div className="laptop:w-5/6 h-12 bg-neutral-800 w-full flex justify-center items-center">
-              <button className="flex items-center text-gray-300 font-normal gap-2">
-                <img className="w-5" src={plus_icon_rounded} alt="..." />
-                Show More
-              </button>
-            </div>
-          </div>
-          <footer className="w-full flex flex-col gap-16 bg-neutral-800 justify-center items-center py-16">
-            <div className=" flex items-start justify-between gap-16 laptop:w-5/6">
-              <div className="flex items-start gap-16 laptop:w-5/6">
+
+          <footer className="w-full flex flex-col gap-16 bg-neutral-800 justify-center items-center py-16 px-8 mt-8">
+            <div className="flex flex-col laptop:flex-row items-start justify-between gap-16 laptop:w-5/6">
+              <div className="flex flex-wrap  items-start gap-8 laptop:gap-16 laptop:w-5/6">
                 <div className="flex flex-col items-center">
                   <img
-                    className="w-56 mb-4"
+                    className="max-w-24 laptop:min-w-56 mb-4"
                     src={logo_full_branding}
                     alt="..."
                   />
+
                   <div>
                     <ul className="flex items-center gap-4">
                       <li>
@@ -858,7 +977,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#about-us"
-                        className="text-base text-gray-100 font-medium block  mb-4"
+                        className="text-sm laptop:text-base text-gray-100 font-medium block  mb-4"
                       >
                         For Users
                       </a>
@@ -902,7 +1021,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#about-us"
-                        className="text-base text-gray-100 font-medium block  mb-4"
+                        className="text-sm laptop:text-base text-gray-100 font-medium block  mb-4"
                       >
                         About Us
                       </a>
@@ -910,7 +1029,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#contact-us"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Contact Us
                       </a>
@@ -918,7 +1037,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#investors"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Investors
                       </a>
@@ -926,7 +1045,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#careers"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Careers
                       </a>
@@ -934,7 +1053,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#blog"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Blog
                       </a>
@@ -942,7 +1061,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#faq"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         FAQ
                       </a>
@@ -954,7 +1073,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#about-us"
-                        className="text-base text-gray-100 font-medium block  mb-4"
+                        className="text-sm laptop:text-base text-gray-100 font-medium block  mb-4"
                       >
                         Content
                       </a>
@@ -962,7 +1081,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#contact-us"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Movies
                       </a>
@@ -970,7 +1089,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#investors"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Series
                       </a>
@@ -978,7 +1097,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#careers"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Actors
                       </a>
@@ -986,7 +1105,7 @@ const ShowDetails = (props) => {
                     <li>
                       <a
                         href="#blog"
-                        className="text-sm text-gray-300 font-light"
+                        className=" text-xs laptop:text-sm text-gray-300 font-light"
                       >
                         Writers
                       </a>
@@ -1005,16 +1124,15 @@ const ShowDetails = (props) => {
                     placeholder="Email here"
                   />
                   <button className="bg-gray-100 p-2">
-                    <img className="w-14" src={send_icon} alt="" />
+                    <img className="w-8  laptop:w-14" src={send_icon} alt="" />
                   </button>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-center gap-4">
-              <span className="w-96 block text-gray-300 font-light text-xs text-center">
-                BR Skip navigation Search 9+ Avatar image Website developed by
-                João Marcos for personal and non -commercial purposes, follow me
-                on social media
+              <span className="w-full tablet:w-96 block text-gray-300 font-light text-xs text-center">
+                Website developed by João Marcos for personal and non
+                -commercial purposes, follow me on social media
               </span>
               <div className="flex items-center gap-8">
                 <a href="https://www.instagram.com/jao.mms" target="_blank">

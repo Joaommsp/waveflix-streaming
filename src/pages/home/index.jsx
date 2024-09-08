@@ -46,6 +46,7 @@ import tv_menu_icon from "../../assets/images/icons/svg/tv-svgrepo-com.svg";
 import info_menu_icon from "../../assets/images/icons/svg/info-circle-svgrepo-com.svg";
 import nav_menu_icon from "../../assets/images/icons/svg/menu-alt-01-svgrepo-com.svg";
 import close_menu_icon from "../../assets/images/icons/svg/close-circle-svgrepo-com.svg";
+import home_menu_icon from "../../assets/images/icons/svg/home-page-svgrepo-com.svg"
 
 import home_banner from "../../assets/images/home-screen-banner.png";
 import hod_banner from "../../assets/images/hod-poster.png";
@@ -454,7 +455,7 @@ const Home = (props) => {
               </nav>
               <div className="flex flex-col h-full justify-center laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
                 
-                  <div className="flex-collaptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
+                  <div className="flex-col laptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
                   <Link to={"/signin"} className="text-gray-100 font-light w-full text-end"  href="">Logout</Link>
                   <Link to={"/login"} c className="text-gray-100 font-light shrink-0 text-end" href="">Change Account</Link>
                   </div>
@@ -530,12 +531,21 @@ const Home = (props) => {
                 -commercial purposes, follow me on social media
               </span>
             </div>
-            <button
-              onClick={() => controlMenuMobile()}
-              className="flex absolute top-0 right-2 laptop:hidden justify-center items-center"
-            >
-              <img className="w-8" src={menuIcon} alt=".." />
-            </button>
+            <div  className="flex absolute top-0 right-2 laptop:hidden gap-2">
+              <Link
+              to={"/"}
+                className="flex laptop:hidden justify-center items-center"
+              >
+              
+                <img className="w-6"  src={home_menu_icon} alt="..." />
+              </Link>
+              <button
+                onClick={() => controlMenuMobile()}
+                className="flex laptop:hidden justify-center items-center"
+              >
+                <img className="w-8" src={menuIcon} alt=".." />
+              </button>
+            </div>
           </div>
         </header>
         <aside
