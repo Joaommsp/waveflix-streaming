@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom"
 
 import logo_full_light from "../../assets/images/logo-full-white.png";
 import logo_full_branding from "../../assets/images/logo-full-brandname.png";
 import c_12 from "../../assets/images/c-12.png";
-import c_16 from "../../assets/images/c-16.png";
 import star_rating from "../../assets/images/star-rating.png";
 
 import notific_icon from "../../assets/images/icons/svg/notification-svgrepo-com.svg";
@@ -20,15 +18,11 @@ import menu_icon from "../../assets/images/icons/svg/menu-svgrepo-com.svg";
 import play_icon from "../../assets/images/icons/svg/play-svgrepo-com.svg";
 import play_bluish_icon from "../../assets/images/icons/svg/play-1003-svgrepo-com.svg";
 import add_icon from "../../assets/images/icons/svg/add-svgrepo-com.svg";
-import trend_icon from "../../assets/images/icons/svg/trend-up-svgrepo-com.svg";
-import fire_icon from "../../assets/images/icons/svg/fire-svgrepo-com.svg";
-import star_filled_icon from "../../assets/images/icons/svg/star-filled-svgrepo-com.svg";
 import star_yellow_icon from "../../assets/images/icons/svg/star-svgrepo-yellow.svg";
 import heart_icon from "../../assets/images/icons/svg/heart-svgrepo-com.svg";
 import heart_red_icon from "../../assets/images/icons/svg/heart-red-svgrepo-com.svg";
 import clock_icon from "../../assets/images/icons/svg/clock-two-thirty-svgrepo-com.svg";
 import view_icon from "../../assets/images/icons/svg/eye-svgrepo-com.svg";
-import plus_icon_rounded from "../../assets/images/icons/svg/plus-circle-svgrepo-com.svg";
 import facebook_icon_white from "../../assets/images/icons/svg/facebook-svgrepo-com-white.svg";
 import instagram_icon_white from "../../assets/images/icons/svg/instagram-svgrepo-com-white.svg";
 import youtube_icon_white from "../../assets/images/icons/svg/youtube-168-svgrepo-com-white.svg";
@@ -47,10 +41,7 @@ import home_menu_icon from "../../assets/images/icons/svg/home-page-svgrepo-com.
 import cover_poster_gradient from "../../assets/images/cover-content-image.png";
 
 import {
-  getTopRatedSeries_heroes_dc,
-  getArtists,
   getSerieCreditsByID,
-  getMovieByGenre,
   getShowDetailByID,
   getSeriesVideos,
   getSimilarSeries,
@@ -58,17 +49,12 @@ import {
 
 import { useEffect, useState, useRef } from "react";
 
-const ShowDetails = (props) => {
+const ShowDetails = () => {
   const location = useLocation();
 
   const showID = location.state ? location.state.showID : null;
   const showGenreId = location.state ? location.state.showGenreId : null;
 
-  const [topRatedSeries_heroes_dc, setTopRatedSeries_heroes_dc] = useState([]);
-  const [topRatedSeries_heroes_dcPageTwo, setTopRatedSeries_heroes_dcPageTwo] =
-    useState([]);
-  const [popularArtists, setPopularArtists] = useState([]);
-  const [popularArtistsPageTwo, setPopularArtistsPageTwo] = useState([]);
   const [movieDetails, setMovieDetails] = useState({});
   const [movieCredits, setMovieCredits] = useState({});
   const [movieVideos, setMovieVideos] = useState([]);
@@ -89,20 +75,14 @@ const ShowDetails = (props) => {
   useEffect(() => {
     setLocalMovieID();
     setLocalMovieGenreID();
-    geTopRatedSeriesList_heroes_dc(1);
-    geTopRatedSeriesList_heroes_dcPageTwo(2);
-    getPopularArtists(1);
-    getPopularArtistsPageTwo(2);
     verifyLocalShowID();
   }, []);
 
   const setLocalMovieID = () => {
-    console.log("SITUACAO DO SHOW ID ID", showID);
     return showID != null ? localStorage.setItem("localShowID", showID) : null;
   };
 
   const setLocalMovieGenreID = () => {
-    console.log("SITUACAO DO SHOW ID", showGenreId);
     return showGenreId != null
       ? localStorage.setItem("localShowGenreID", showGenreId)
       : null;
@@ -112,13 +92,11 @@ const ShowDetails = (props) => {
     const localShowID = localStorage.getItem("localShowID");
 
     if (localShowID != null) {
-      console.log("ID LOCAL EXISTE E ESTA AQUI O ", localShowID);
       getMovieDetails(localShowID);
       getMovieCredits(localShowID);
       getMovieVideosByID(localShowID);
       getMoviesByGenreID(showGenreId, 1);
     } else {
-      console.log("ID LOCAL N EXISTE e foi criado agora ", showID);
       localStorage.setItem("localShowID", showID);
       getMovieDetails(showID);
       getMovieCredits(showID);
@@ -129,8 +107,6 @@ const ShowDetails = (props) => {
 
   const getMovieDetails = async (showID) => {
     const response = await getShowDetailByID(showID);
-    console.log(showID);
-    console.log(response);
     setMovieDetails({
       backdrop_path: response.backdrop_path,
       title: response.name,
@@ -150,47 +126,21 @@ const ShowDetails = (props) => {
 
   const getMovieCredits = async (movieID) => {
     const response = await getSerieCreditsByID(movieID);
-    console.log(movieID);
-    console.log(response);
     setMovieCredits({
       cast: response.cast,
     });
   };
 
   const getMovieVideosByID = async (movieID) => {
-    const response = await getSeriesVideos(movieID);
-    console.log(movieID);
-    console.log(response);
+    const response = await getSeriesVideos(movieID);;
     setMovieVideos(response.results);
   };
 
   const getMoviesByGenreID = async (genreId, page) => {
     const response = await getSimilarSeries(genreId, page);
     const response_page2 = await getSimilarSeries(genreId, page + 1);
-    console.log(genreId);
-    console.log(response);
     setSimilarMovies(response.results);
     setSimilarMovies_page2(response_page2.results);
-  };
-
-  const geTopRatedSeriesList_heroes_dc = async (page) => {
-    const response = await getTopRatedSeries_heroes_dc(page);
-    setTopRatedSeries_heroes_dc(response.results);
-  };
-
-  const geTopRatedSeriesList_heroes_dcPageTwo = async (page) => {
-    const response = await getTopRatedSeries_heroes_dc(page);
-    setTopRatedSeries_heroes_dcPageTwo(response.results);
-  };
-
-  const getPopularArtists = async (page) => {
-    const response = await getArtists(page);
-    setPopularArtists(response.results);
-  };
-
-  const getPopularArtistsPageTwo = async (page) => {
-    const response = await getArtists(page);
-    setPopularArtistsPageTwo(response.results);
   };
 
   const handleMouseDrag = (e) => {
@@ -217,17 +167,6 @@ const ShowDetails = (props) => {
     const [year, month, day] = date.split("-");
 
     return `${year}`;
-  };
-
-  const formatRating = (rating) => {
-    return parseFloat(Number(rating).toFixed(1));
-  };
-
-  const formatMinutes = (minutes) => {
-    const hour = Math.floor(minutes / 60);
-    const minutesLeft = minutes % 60;
-
-    return `${hour}h ${minutesLeft}min`;
   };
 
   const scrollContentLeft = () => {
@@ -264,7 +203,6 @@ const ShowDetails = (props) => {
     menu.classList.toggle("hidden");
 
     if (menuIcon == nav_menu_icon) {
-      console.log("CU");
       setMenuIcon(close_menu_icon);
     } else {
       setMenuIcon(nav_menu_icon);
@@ -281,9 +219,6 @@ const ShowDetails = (props) => {
         className="relative w-full h-fit min-h-screen bg-top bg-no-repeat mb-8 "
       >
         <header
-          // style={{
-          //   backgroundColor: "#090909",
-          // }}
           className="fixed laptop:absolute z-50 bg-neutral-950 laptop:bg-transparent w-full flex py-2 laptop:py-3 px items-center justify-center "
         >
           <div className="relative  min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">

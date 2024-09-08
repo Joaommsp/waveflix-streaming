@@ -1,7 +1,4 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
-
 import logo_full_light from "../../assets/images/logo-full-white.png";
 import logo_full_branding from "../../assets/images/logo-full-brandname.png";
 import logo_pacific_rim from "../../assets/images/pacific-rim-logo.png";
@@ -65,7 +62,7 @@ import {
 
 import { useEffect, useState, useRef } from "react";
 
-const Home = (props) => {
+const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [topRatedSeries, setTopRatedSeries] = useState([]);
@@ -357,8 +354,6 @@ const Home = (props) => {
     return parseFloat(Number(rating).toFixed(1));
   };
 
-  const navigate = useNavigate();
-
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.pageX - e.currentTarget.offsetLeft);
@@ -387,7 +382,6 @@ const Home = (props) => {
     menu.classList.toggle("hidden");
 
     if (menuIcon == nav_menu_icon) {
-      console.log("CU");
       setMenuIcon(close_menu_icon);
     } else {
       setMenuIcon(nav_menu_icon);
@@ -2113,7 +2107,7 @@ const Home = (props) => {
                   <Link
                     to="/show-details"
                     state={{
-                      showID: 94997,
+                      showID: 76479,
                       showGenreId: 10765,
                     }}
                     className="text-xs tablet:text-sm flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
@@ -2679,7 +2673,5 @@ const Home = (props) => {
     </div>
   );
 };
-
-Home.propTypes = {};
 
 export default Home;

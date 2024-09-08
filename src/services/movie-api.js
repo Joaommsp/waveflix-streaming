@@ -10,11 +10,10 @@ const getPopularMovies = async (page) => {
 
   try {
     const response = await fetch(
-      "https://api.themoviedb.org/3/discover/movie?include_adult=true&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=5&primary_release_date.gte=2021-01-01&include_video=true",
+      "https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&vote_average.gte=5&primary_release_date.gte=2021-01-01&include_video=true",
       options
     );
     const data = await response.json();
-    console.log("filmes aqui", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -80,7 +79,7 @@ const getUpcomingMovies = async () => {
 
   try {
     const response = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?include_adult=true&include_video=true&language=en-US",
+      "https://api.themoviedb.org/3/movie/upcoming?include_adult=false&include_video=true&language=en-US",
       options
     );
     const data = await response.json();
@@ -106,7 +105,6 @@ const searchMovies = async () => {
     options
   )
     .then((response) => response.json())
-    .then((response) => console.log(response))
     .catch((err) => console.error(err));
 };
 
@@ -125,7 +123,6 @@ const searchTVGenres = async () => {
     options
   )
     .then((response) => response.json())
-    .then((response) => console.log(response))
     .catch((err) => console.error(err));
 };
 
@@ -145,7 +142,6 @@ const getTopRatedSeries = async (page) => {
       options
     );
     const data = await response.json();
-    console.log("SERIES AQUI", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -169,7 +165,6 @@ const getTopRatedSeries_2014 = async (page) => {
       options
     );
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (err) {
     console.error(err);
@@ -193,7 +188,6 @@ const getTopRatedSeries_heroes = async (page) => {
       options
     );
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (err) {
     console.error(err);
@@ -217,7 +211,6 @@ const getTopRatedSeries_heroes_dc = async (page) => {
       options
     );
     const data = await response.json();
-    console.log("cu", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -241,7 +234,6 @@ const getArtists = async (page) => {
       options
     );
     const data = await response.json();
-    console.log("cu", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -265,7 +257,6 @@ const getMovieDetailByID = async (movieID) => {
       options
     );
     const data = await response.json();
-    console.log("detalhes do filmes aqui", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -289,7 +280,6 @@ const getMovieCreditsByID = async (movieID) => {
       options
     );
     const data = await response.json();
-    console.log("creditos do filme aqui", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -313,7 +303,6 @@ const getMovieVideos = async (movieID) => {
       options
     );
     const data = await response.json();
-    console.log("OLHA OS VIDEOS DO FILME AQUI", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -337,7 +326,6 @@ const getMovieByGenre = async (genreID, page) => {
       options
     );
     const data = await response.json();
-    console.log("OLHA OS VIDEOS DO FILME AQUI", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -361,7 +349,6 @@ const getShowDetailByID = async (seriesID) => {
       options
     );
     const data = await response.json();
-    console.log("detalhes da série  aqui", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -385,7 +372,6 @@ const getSeriesVideos = async (seriesID) => {
       options
     );
     const data = await response.json();
-    console.log("OLHA OS VIDEOS DA SERIE AQUI", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -409,7 +395,6 @@ const getSerieCreditsByID = async (seriesID) => {
       options
     );
     const data = await response.json();
-    console.log("creditos do filme aqui", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -433,7 +418,6 @@ const getSimilarSeries = async (genreID, page) => {
       options
     );
     const data = await response.json();
-    console.log("creditos do filme aquiiiii", data);
     return data;
   } catch (err) {
     console.error(err);
