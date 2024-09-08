@@ -508,13 +508,13 @@ const MovieDetails = (props) => {
                 <span className="text-sm text-gray-300 font-medium">
                   {movieDetails.release_date}
                 </span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="bg-gray-300 hidden laptop:block w-0.5 h-full rounded-full"></div>
                 <img src={c_12} alt="..." />
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="bg-gray-300 w-0.5 h-full hidden laptop:block rounded-full"></div>
                 <span className="text-sm text-gray-300 font-medium">
                   {formatMinutes(movieDetails.runtime)}
                 </span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="bg-gray-300 hidden laptop:block w-0.5 h-full rounded-full"></div>
                 <div className="flex items-center gap-1">
                   <img className="w-5" src={star_rating} alt="" />
                   <img className="w-5" src={star_rating} alt="" />
