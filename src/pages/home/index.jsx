@@ -1215,14 +1215,14 @@ const Home = (props) => {
               className="w-full laptop:w-5/6 h-full laptop:h-96 bg-cover tablet:bg-center rounded-xl   m-2 laptop:m-4 p-4 laptop:p-8 flex flex-col items-start justify-between"
             >
               <div className="flex w-full h-7  items-center gap-3 mb-4">
-                <img className="w-8" src={c_16} alt="..." />
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
-                <span className="text-sm text-gray-300 font-medium">2022</span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
-                <span className="text-sm w-fit text-gray-300 font-medium">
+                <img className="w-5 laptop:w-8" src={c_16} alt="..." />
+                <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <span className="text-xs laptop:text-sm text-gray-300 font-medium">2022</span>
+                <div className="hidden laptop:block  bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <span className="text-xs laptop:text-sm w-fit text-gray-300 font-medium">
                   2 Seasons
                 </span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
                 <div className=" hidden laptop:flex items-center gap-1">
                   <img className="w-5" src={star_rating} alt="" />
                   <img className="w-5" src={star_rating} alt="" />
@@ -1270,12 +1270,12 @@ const Home = (props) => {
                       showID: 94997,
                       showGenreId: 10765,
                     }}
-                    className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
-                  >
+                    className="text-xs tablet:text-sm flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
+                    >
                     <img className="w-5" src={play_icon} alt="..." /> PLAY
                   </Link>
-                  <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
-                    <img className="w-5" src={add_icon} alt="..." />
+                  <button className="text-xs tablet:text-sm flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
+                  <img className="w-5" src={add_icon} alt="..." />
                     MY LIST
                   </button>
                 </div>
@@ -2061,14 +2061,14 @@ const Home = (props) => {
               className="w-full laptop:w-5/6 h-full laptop:h-96 bg-cover bg-center rounded-xl  m-2 laptop:m-4 p-4 laptop:p-8 flex flex-col items-start justify-between"
             >
               <div className="flex w-full h-7  items-center gap-3 mb-4">
-                <img className="w-8" src={c_16} alt="..." />
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
-                <span className="text-sm text-gray-300 font-medium">2019</span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
-                <span className="text-sm w-fit text-gray-300 font-medium">
+                <img className="w-5 laptop:w-8" src={c_16} alt="..." />
+                <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <span className="text-xs laptop:text-sm text-gray-300 font-medium">2019</span>
+                <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <span className="text-xs laptop:text-sm w-fit text-gray-300 font-medium">
                   4 Seasons
                 </span>
-                <div className="bg-gray-300 w-0.5 h-full rounded-full"></div>
+                <div className="hidden laptop:block bg-gray-300 w-0.5 h-full rounded-full"></div>
                 <div className=" hidden laptop:flex items-center gap-1">
                   <img className="w-5" src={star_rating} alt="" />
                   <img className="w-5" src={star_rating} alt="" />
@@ -2116,12 +2116,12 @@ const Home = (props) => {
                       showID: 94997,
                       showGenreId: 10765,
                     }}
-                    className="flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
-                  >
+                    className="text-xs tablet:text-sm flex items-center bg-blue-500 text-gray-100 py-2 px-6 gap-2 rounded-md transition ease-in-out hover:scale-110"
+                    >
                     <img className="w-5" src={play_icon} alt="..." /> PLAY
                   </Link>
-                  <button className="flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
-                    <img className="w-5" src={add_icon} alt="..." />
+                  <button className="text-xs tablet:text-sm flex items-center bg-transparent  text-gray-100 py-2 px-6 gap-2 transition ease-in-out hover:scale-110">
+                  <img className="w-5" src={add_icon} alt="..." />
                     MY LIST
                   </button>
                 </div>
