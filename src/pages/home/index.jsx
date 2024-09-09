@@ -658,7 +658,7 @@ const Home = () => {
                   <img className="w-5" src={star_rating} alt="" />
                 </div>
               </div>
-              <p className="w-full tablet:w-full text-xs tablet:text-sm text-gray-100 font-light mb-8">
+              <p className="w-full tablet:w-full laptop:w-1/2 text-xs tablet:text-sm text-gray-100 font-light mb-8">
                 Lorem ipsum dolor sit amet consectetur. Nunc sit eget pharetra
                 ut at duis non justo turpis. Enim interdum etiam feugiat
                 egestas. Egestas ipsum in egestas tristique eget. Nibh elementum
