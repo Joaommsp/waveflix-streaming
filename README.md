@@ -65,7 +65,11 @@ npm run dev
 ### 🖱️🅰️ API MOVIE DATA BASE 
 
 <p>
+<img src="./readme/moviedb.svg" alt="hero">
 </p>
+
+<p>
+Oferece acesso a um vasto banco de dados de informações sobre filmes, séries de TV, atores e atrizes, trailers, imagens, resenhas e muito mais. Ela é amplamente usada por desenvolvedores para integrar informações relacionadas a filmes e séries em seus próprios aplicativos e websites.</p>
 
 ## 📱 Responsividade
 
@@ -90,22 +94,21 @@ Clique e acesse o projeto
 ## ⭐ Metas
 
 - [x] Uma página viva e elegante
+- [x] Fidelidade com o protótipo desenvolvido no FIGMA
 - [x] UX e UI Design
 - [x] UX e UI Design
-- [x] Utilização da API
+- [x] Utilização da API de Filmes
 - [x] Design Responsivo
 - [x] Deploy no Vercel
 - [x] Utilização do Tailwind CSS
 
-
-
 ## 🤓 Me acompanhe para mais projetos
 
-# React + Vite
+# React + Vite 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este modelo fornece uma configuração mínima para fazer o React funcionar no Vite com HMR e algumas regras do ESLint.
 
-Currently, two official plugins are available:
+Atualmente, dois plugins oficiais estão disponíveis:"
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
