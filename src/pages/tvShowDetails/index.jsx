@@ -69,8 +69,14 @@ const ShowDetails = () => {
   const carrouselRef_2 = useRef(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
+    const timeToScrollTop = setInterval(() => {
+      window.scrollTo(0, 0);
+
+      clearInterval(timeToScrollTop)
+    }, 500);
+
+  }, [showID])
 
   useEffect(() => {
     setLocalMovieID();

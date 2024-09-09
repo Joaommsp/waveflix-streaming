@@ -36,9 +36,9 @@ import arrow_next_icon from "../../assets/images/icons/svg/arrow-next-svgrepo-co
 
 import nav_menu_icon from "../../assets/images/icons/svg/menu-alt-01-svgrepo-com.svg";
 import close_menu_icon from "../../assets/images/icons/svg/close-circle-svgrepo-com.svg";
-import home_menu_icon from "../../assets/images/icons/svg/home-page-svgrepo-com.svg"
+import home_menu_icon from "../../assets/images/icons/svg/home-page-svgrepo-com.svg";
 
-import cover_poster_gradient from "../../assets/images/cover-content-image.png"
+import cover_poster_gradient from "../../assets/images/cover-content-image.png";
 
 import {
   getMovieDetailByID,
@@ -67,13 +67,11 @@ const MovieDetails = () => {
   const carrouselRef_2 = useRef(null);
 
   useEffect(() => {
-
     const timeToScrollTop = setInterval(() => {
       window.scrollTo(0, 0);
 
-      clearInterval(timeToScrollTop)
+      clearInterval(timeToScrollTop);
     }, 500);
-
   }, [movieID]);
 
   useEffect(() => {
@@ -230,13 +228,11 @@ const MovieDetails = () => {
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`,
-          backgroundSize: "1500px"
+          backgroundSize: "1500px",
         }}
         className="relative w-full h-fit min-h-screen bg-top bg-no-repeat mb-8 "
       >
-        <header
-          className="fixed laptop:absolute z-50 bg-neutral-950 laptop:bg-transparent w-full flex py-2 laptop:py-3 px items-center justify-center "
-        >
+        <header className="fixed laptop:absolute z-50 bg-neutral-950 laptop:bg-transparent w-full flex py-2 laptop:py-3 px items-center justify-center ">
           <div className="relative   min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
             <div className="flex absolute left-2 laptop:static items-center gap-16">
               <img
@@ -283,8 +279,8 @@ const MovieDetails = () => {
                 </ul>
               </nav>
               <div className="flex flex-col h-full justify-center laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
-              <div className="flex-col laptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
-              <Link
+                <div className="flex-col laptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
+                  <Link
                     to={"/signin"}
                     className="text-gray-100 font-light w-full text-end"
                     href=""
@@ -371,13 +367,12 @@ const MovieDetails = () => {
                 -commercial purposes, follow me on social media
               </span>
             </div>
-            <div  className="flex absolute top-0 right-2 laptop:hidden gap-2">
+            <div className="flex absolute top-0 right-2 laptop:hidden gap-2">
               <Link
-              to={"/"}
+                to={"/"}
                 className="flex laptop:hidden justify-center items-center"
               >
-              
-                <img className="w-6"  src={home_menu_icon} alt="..." />
+                <img className="w-6" src={home_menu_icon} alt="..." />
               </Link>
               <button
                 onClick={() => controlMenuMobile()}
@@ -607,14 +602,13 @@ const MovieDetails = () => {
           </div>
         </div>
         <div
-        style={
-         { backgroundImage: `url(${cover_poster_gradient})
+          style={{
+            backgroundImage: `url(${cover_poster_gradient})
          `,
-        height: "900px"
-        }
-      
-        }
-        className="absolute w-full  min-h-screen top-0 bg-no-repeat bg-cover bg-top flex flex-col items-center z-10"></div>
+            height: "900px",
+          }}
+          className="absolute w-full  min-h-screen top-0 bg-no-repeat bg-cover bg-top flex flex-col items-center z-10"
+        ></div>
       </div>
 
       <div className="w-full h-full flex justify-center">
@@ -730,7 +724,7 @@ const MovieDetails = () => {
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
-                  className="laptop:w-44 laptop:h-64 w-full h-48 object-cover mb-1"
+                    className="laptop:w-44 laptop:h-64 w-full h-48 object-cover mb-1"
                   />
                   <Link
                     key={movie.id}
@@ -748,7 +742,7 @@ const MovieDetails = () => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                  <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -839,7 +833,7 @@ const MovieDetails = () => {
                     <div className="absolute w-full h-full top-0 bg-transparent"></div>
                   </Link>
                   <div className="">
-                   <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
+                    <h3 className="text-xs laptop:text-sm truncate font-medium text-white mb-2">
                       {movie.title}
                     </h3>
                     <div className="flex justify-between items-center">
@@ -866,7 +860,7 @@ const MovieDetails = () => {
               ))}
             </div>
           </div>
-         
+
           <footer className="w-full flex flex-col gap-16 bg-neutral-800 justify-center items-center py-16 px-8 mt-8">
             <div className="flex flex-col laptop:flex-row items-start justify-between gap-16 laptop:w-5/6">
               <div className="flex flex-wrap  items-start gap-8 laptop:gap-16 laptop:w-5/6">
@@ -1076,7 +1070,7 @@ const MovieDetails = () => {
               </div>
             </div>
             <div className="flex flex-col items-center gap-4">
-            <span className="w-full tablet:w-96 block text-gray-300 font-light text-xs text-center">
+              <span className="w-full tablet:w-96 block text-gray-300 font-light text-xs text-center">
                 Website developed by João Marcos for personal and non
                 -commercial purposes, follow me on social media
               </span>

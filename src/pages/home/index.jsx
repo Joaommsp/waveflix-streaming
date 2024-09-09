@@ -662,7 +662,7 @@ const Home = () => {
                 Lorem ipsum dolor sit amet consectetur. Nunc sit eget pharetra
                 ut at duis non justo turpis. Enim interdum etiam feugiat
                 egestas. Egestas ipsum in egestas tristique eget. Nibh elementum
-                ultrices amet vel commodo aenean lectus fringilla morbi. Elit
+                ultrices amet veal te sape commodo aenean lectus fringilla morbi. Elit
                 laoreet eu malesuada imperdiet nullam venenatis non nec. Mattis
                 netus blandit morbi.
               </p>
