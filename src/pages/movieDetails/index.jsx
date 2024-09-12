@@ -232,11 +232,11 @@ const MovieDetails = () => {
         }}
         className="relative w-full h-fit min-h-screen bg-top bg-no-repeat mb-8 "
       >
-        <header
+           <header
           // style={{
           //   backgroundColor: "#090909",
           // }}
-          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex pt-1 laptop:py-3 px items-center justify-center "
+          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex pt-2 laptop:py-3 px items-center justify-center "
         >
           <div className="relative   min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
             <div className="flex absolute left-2 laptop:static items-center gap-16">

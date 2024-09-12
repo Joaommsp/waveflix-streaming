@@ -222,11 +222,11 @@ const ShowDetails = () => {
         }}
         className="relative w-full h-fit min-h-screen bg-top bg-no-repeat mb-8 "
       >
-        <header
+       <header
           // style={{
           //   backgroundColor: "#090909",
           // }}
-          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex pt-1 laptop:py-3 px items-center justify-center "
+          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex pt-2 laptop:py-3 px items-center justify-center "
         >
           <div className="relative   min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
             <div className="flex absolute left-2 laptop:static items-center gap-16">
@@ -274,24 +274,13 @@ const ShowDetails = () => {
                 </ul>
               </nav>
               <div className="flex flex-col h-full justify-center laptop:flex-row items-end laptop:items-center gap-4 laptop:gap-4 tablet:gap-2">
-                <div className="flex-col laptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
-                  <Link
-                    to={"/signin"}
-                    className="text-gray-100 font-light w-full text-end"
-                    href=""
-                  >
-                    Logout
-                  </Link>
-                  <Link
-                    to={"/login"}
-                    c
-                    className="text-gray-100 font-light shrink-0 text-end"
-                    href=""
-                  >
-                    Change Account
-                  </Link>
-                </div>
+                
+                  <div className="flex-col laptop:flex-row justify-center w-fit flex items-center gap-4 mb-4 laptop:mb-0">
+                  <Link to={"/signin"} className="text-gray-100 font-light w-full text-end"  href="">Logout</Link>
+                  <Link to={"/login"} c className="text-gray-100 font-light shrink-0 text-end" href="">Change Account</Link>
+                  </div>
                 <div className="flex flex-row items-center gap-2 laptop:gap-4">
+
                   <a href="">
                     <img
                       className="w-7 hover:scale-125 transition ease-in-out"
@@ -362,12 +351,13 @@ const ShowDetails = () => {
                 -commercial purposes, follow me on social media
               </span>
             </div>
-            <div className="flex absolute top-0 right-2 laptop:hidden gap-2">
+            <div  className="flex absolute top-0 right-2 laptop:hidden gap-2">
               <Link
-                to={"/"}
+              to={"/"}
                 className="flex laptop:hidden justify-center items-center"
               >
-                <img className="w-5" src={home_menu_icon} alt="..." />
+              
+                <img className="w-5"  src={home_menu_icon} alt="..." />
               </Link>
               <button
                 onClick={() => controlMenuMobile()}
