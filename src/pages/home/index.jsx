@@ -400,13 +400,13 @@ const Home = () => {
           // style={{
           //   backgroundColor: "#090909",
           // }}
-          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex py-2 laptop:py-3 px items-center justify-center "
+          className="fixed laptop:static z-50 bg-neutral-950 laptop:bg-transparent w-full flex pt-1 laptop:py-3 px items-center justify-center "
         >
           <div className="relative   min-h-8 w-full px-5 laptop:px-0 laptop:w-5/6 flex items-start laptop:items-center justify-between">
             <div className="flex absolute left-2 laptop:static items-center gap-16">
               <img
                 src={logo_full_light}
-                className="w-20 laptop:w-24 mr-12"
+                className="w-16 tablet:w-20 laptop:w-24 mr-12"
                 alt=""
               />
             </div>
@@ -531,13 +531,13 @@ const Home = () => {
                 className="flex laptop:hidden justify-center items-center"
               >
               
-                <img className="w-6"  src={home_menu_icon} alt="..." />
+                <img className="w-5"  src={home_menu_icon} alt="..." />
               </Link>
               <button
                 onClick={() => controlMenuMobile()}
                 className="flex laptop:hidden justify-center items-center"
               >
-                <img className="w-8" src={menuIcon} alt=".." />
+                <img className="w-6" src={menuIcon} alt=".." />
               </button>
             </div>
           </div>
