@@ -622,12 +622,12 @@ const Home = () => {
                   borderRadius: "10px",
                 }}
                 placeholder="Search"
-                className="w-full laptop:w-96 text-gray-100 text-sm outline-none py-2 px-4 pl-12  rounded-md backdrop-blur-sm bg-slate-500 border-2 border-transparent focus-within:border-gray-400 transition ease-in-out delay-150 cursor-pointer focus:cursor-text shadow-md"
+                className="w-full laptop:w-96 text-gray-100 text-xs laptop:text-sm outline-none py-2 px-4 pl-12  rounded-md backdrop-blur-sm bg-slate-500 border-2 border-transparent focus-within:border-gray-400 transition ease-in-out delay-150 cursor-pointer focus:cursor-text shadow-md"
                 type="text"
               />
               <button title="Search">
                 <img
-                  className="absolute top-1/2  left-6 transform -translate-y-1/2 -translate-x-1/2 w-7"
+                  className="absolute top-1/2  left-6 transform -translate-y-1/2 -translate-x-1/2 w-5 laptop:w-7"
                   src={search_icon}
                   alt="..."
                 />
